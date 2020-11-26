@@ -1,7 +1,6 @@
+import { AtividadeCadastroComponent } from './atividade/atividade-cadastro/atividade-cadastro.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { AtividadeCadastroComponent } from './atividade-cadastro/atividade-cadastro.component';
 
 const routes: Routes = [
   { path: 'atividade-cadastro', component: AtividadeCadastroComponent }

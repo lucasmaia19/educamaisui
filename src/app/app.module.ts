@@ -1,7 +1,13 @@
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AtividadePesquisaComponent } from './atividade/atividade-pesquisa/atividade-pesquisa.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AtividadeCadastroComponent } from './atividade/atividade-cadastro/atividade-cadastro.component';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,14 +17,23 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { CardModule } from 'primeng/card';
 import { PanelModule } from 'primeng/panel';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AtividadeCadastroComponent } from './atividade-cadastro/atividade-cadastro.component';
+import { ButtonModule } from 'primeng/button';
+import {DataViewModule} from 'primeng/dataview';
+
+const routes: Routes = [
+    { path: '', component: AtividadePesquisaComponent },
+
+    { path: 'atividade', component: AtividadeCadastroComponent },
+
+    { path: 'ativade/:id', component: AtividadeCadastroComponent }
+  ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    AtividadeCadastroComponent
+    AtividadeCadastroComponent,
+    AtividadePesquisaComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +47,10 @@ import { AtividadeCadastroComponent } from './atividade-cadastro/atividade-cadas
     FieldsetModule,
     CardModule,
     PanelModule,
+    ButtonModule,
+    DataViewModule,
 
-    AppRoutingModule
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

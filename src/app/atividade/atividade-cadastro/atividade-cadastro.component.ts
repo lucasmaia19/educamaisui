@@ -1,6 +1,8 @@
+import { CadastroService } from './../cadastro-.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileUpload } from 'primeng/fileupload';
+import { Router } from '@angular/router';
 
 export class Atividade {
     nome?: string;
@@ -22,7 +24,11 @@ export class AtividadeCadastroComponent implements OnInit {
     @ViewChild('arquivo') arquivo: FileUpload;
 
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private cadastroService: CadastroService,
+        ) { }
 
     ngOnInit(): void {
         this.atividade = { nome: 'Colorir', tag: 'Maternal' };
@@ -45,6 +51,8 @@ export class AtividadeCadastroComponent implements OnInit {
         this.http.post(this.apiuploadComDadosUrl, formData)
             .toPromise()
             .then(response => console.log(response));
+            this.router.navigate([''])
+            this.cadastroService.listaCadastros
 
     }
 
