@@ -1,0 +1,25 @@
+<p-fieldset legend="Cadastro de Atividades">
+    <div class="p-fluid">
+        <form #form (ngSubmit)="uploadComDados()">
+
+            <div class="p-col-12 p-md-6">
+                <label>Nome</label>
+                <input type="text" pInputText #nome name="nome" [(ngModel)]="atividade.nome">
+            </div>
+
+            <div class="p-col-12 p-md-6">
+                <label>TAG</label>
+                <input type="text" pInputText #tag name="tag" [(ngModel)]="atividade.tag">
+            </div>
+
+            <div class="p-col-12 p-md-6">
+                <p-fileUpload mode="advanced" #arquivo name="arquivo" url="{{apiUploadUrl}}"
+                    [showUploadButton]="false"></p-fileUpload>
+            </div>
+
+            <div class="p-col-12 p-md-6">
+                <button pButton type="button" label="Save" icon="pi pi-check" (click)="uploadComDados()"></button>
+            </div>
+        </form>
+    </div>
+</p-fieldset>
