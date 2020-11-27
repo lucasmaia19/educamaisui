@@ -14,11 +14,11 @@
 
             <div class="p-col-12 p-md-6">
                 <p-fileUpload mode="advanced" #arquivo name="arquivo" url="{{apiUploadUrl}}"
-                    [showUploadButton]="false"></p-fileUpload>
+                    [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
             </div>
 
             <div class="p-col-12 p-md-6">
-                <button pButton type="button" label="Save" icon="pi pi-check" (click)="uploadComDados()"></button>
+                <button pButton type="button" label="Salvar" icon="pi pi-check" (click)="uploadComDados()"></button>
             </div>
         </form>
     </div>

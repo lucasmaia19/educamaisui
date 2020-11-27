@@ -35,6 +35,7 @@
                   <div class="product-grid-item-content">
                       <img [src]=converteImagemBase64ParaHtml(atividade.arquivo) style="width: 300px; height: 300px; object-fit: cover;"/>
                       <div class="product-name">{{"Atividade: " + atividade.nome}}</div>
+                      <p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade)"></p-button>
                   </div>
                   <div class="product-grid-item-bottom">
                   </div>

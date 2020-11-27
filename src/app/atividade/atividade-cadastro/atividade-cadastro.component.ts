@@ -51,9 +51,8 @@ export class AtividadeCadastroComponent implements OnInit {
         this.http.post(this.apiuploadComDadosUrl, formData)
             .toPromise()
             .then(response => console.log(response));
+            this.cadastroService.listaCadastros()
             this.router.navigate([''])
-            this.cadastroService.listaCadastros
-
     }
 
 }

@@ -18,11 +18,12 @@ export class CadastroService {
     return this.http.get('http://localhost:8080/atividade/')
       .toPromise()
       .then(data => { return data; });
-}
+    }
 
-  somar() {
-    let resultado = 1 + 1;
-    return resultado;
-  }
-
+    gerarPDF(atividade: any) {
+        console.log("gerarPDF service")
+        return this.http.post('http://localhost:8080/atividade/gerarPDF/', atividade)
+            .toPromise()
+            .then(response => {return response})
+    }
 }

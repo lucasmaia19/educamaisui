@@ -1,6 +1,8 @@
+import { Atividade } from './../atividade-cadastro/atividade-cadastro.component';
 import { CadastroService } from './../cadastro-.service';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pesquisaatividade',
@@ -9,17 +11,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AtividadePesquisaComponent implements OnInit {
 
-  //atividades: Atividade[];
-  //atividades = new Array<Atividade>();
-  atividades: any;
+    atividades: any;
 
   constructor(
-    private service: CadastroService,
+    private cadastroService: CadastroService,
     private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
-    this.service.listaCadastros()
+    this.cadastroService.listaCadastros()
       .then(response => {
         this.atividades = response;
         console.log(this.atividades);
@@ -27,19 +27,17 @@ export class AtividadePesquisaComponent implements OnInit {
   }
 
   converteImagemBase64ParaHtml(imagem: any) {
-
-    // <img [src]="'data:image/jpg;base64," + {{ atividade.atividade }} + "'"/>
-
     let novaImagem;
-
-    // novaImagem = this.sanitizer.bypassSecurityTrustUrl(imagem);
-    // novaImagem = "'data:image/jpg;base64," + novaImagem + "'";
-
     novaImagem = "data:image/jpg;base64," + imagem + "";
     novaImagem = this.sanitizer.bypassSecurityTrustUrl(novaImagem);
 
     return novaImagem;
-
   }
 
+  gerarPDF(atividade: Atividade) {
+      console.log("gerarPDF")
+      console.log(atividade)
+      this.cadastroService.gerarPDF(atividade)
+       .then(response => console.log(response));
+  }
 }
