@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileUpload } from 'primeng/fileupload';
 import { Router } from '@angular/router';
+import { timeout } from 'rxjs/operators';
+
 
 export class Atividade {
     nome?: string;
@@ -50,9 +52,12 @@ export class AtividadeCadastroComponent implements OnInit {
 
         this.http.post(this.apiuploadComDadosUrl, formData)
             .toPromise()
-            .then(response => console.log(response));
-            this.cadastroService.listaCadastros()
-            this.router.navigate([''])
+            .then(response => response);
+            timeout(10000);
+            // this.router.navigate(['']);
     }
+
+
+
 
 }

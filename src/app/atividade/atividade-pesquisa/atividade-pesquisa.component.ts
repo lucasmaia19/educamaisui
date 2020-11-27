@@ -38,6 +38,10 @@ export class AtividadePesquisaComponent implements OnInit {
       console.log("gerarPDF")
       console.log(atividade)
       this.cadastroService.gerarPDF(atividade)
-       .then(response => console.log(response));
+       .then(response => {
+           console.log(response);
+           const fileURL = URL.createObjectURL(response);
+           window.open(fileURL, '_blank');
+        });
   }
 }

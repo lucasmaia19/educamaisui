@@ -21,8 +21,15 @@ export class CadastroService {
     }
 
     gerarPDF(atividade: any) {
+
         console.log("gerarPDF service")
-        return this.http.post('http://localhost:8080/atividade/gerarPDF/', atividade)
+        console.log(atividade)
+        console.log(atividade.id)
+
+        const url = `http://localhost:8080/atividade/gerar-pdf/${atividade.id}`;
+        console.log(url)
+
+        return this.http.get(url, { responseType: 'blob' })
             .toPromise()
             .then(response => {return response})
     }
