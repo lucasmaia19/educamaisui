@@ -1,5 +1,10 @@
+import { FaixaEtaria } from './model/faixaEtaria';
+import { Cidade } from './teste/cidade';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { CampoEx } from './model/campoEx';
+import { OAD } from './model/oad';
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +38,32 @@ export class CadastroService {
             .toPromise()
             .then(response => {return response})
     }
+
+    getFaixaEtaria() {
+        return [
+            new FaixaEtaria(1, 'Brasil' ),
+            new FaixaEtaria(2, 'USA' ),
+            new FaixaEtaria(3, 'Itália' )
+           ];
+    }
+
+    getCampoEx() {
+
+        return [
+            new CampoEx(1, 'Brasil' ),
+            new CampoEx(2, 'USA' ),
+            new CampoEx(3, 'Itália' )
+           ];
+    }
+
+    getOAD() {
+        return [
+            new OAD(1, 1, 1, 'São Paulo' ),
+            new OAD(1, 1, 1, 'São Paulo' ),
+            new OAD(1, 1, 1, 'São Paulo' ),
+            new OAD(1, 1, 1, 'São Paulo' ),
+        ];
+    }
+
+
 }

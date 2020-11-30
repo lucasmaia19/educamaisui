@@ -1,0 +1,81 @@
+[{
+	"id": "1",
+	"Nome": "Afonso Cláudio",
+	"estado": "8"
+},
+     {
+	"id": "2",
+	"Nome": "Água Doce do Norte",
+	"estado": "8"
+},
+     {
+	"id": "3",
+	"Nome": "Águia Branca",
+	"estado": "8"
+},
+     {
+	"id": "4",
+	"Nome": "Alegre",
+	"estado": "8"
+},
+     {
+	"id": "5",
+	"Nome": "Alfredo Chaves",
+	"estado": "8"
+},
+     {
+	"id": "6",
+	"Nome": "Alto Rio Novo",
+	"estado": "8"
+},
+     {
+	"id": "7",
+	"Nome": "Anchieta",
+	"estado": "8"
+},
+     {
+	"id": "8",
+	"Nome": "Apiacá",
+	"estado": "8"
+},
+{
+	"id": "79",
+	"Nome": "Acrelândia",
+	"estado": "1"
+},
+     {
+	"id": "80",
+	"Nome": "Assis Brasil",
+	"estado": "1"
+},
+     {
+	"id": "81",
+	"Nome": "Brasiléia",
+	"estado": "1"
+},
+     {
+	"id": "82",
+	"Nome": "Bujari",
+	"estado": "1"
+},
+     {
+	"id": "83",
+	"Nome": "Capixaba",
+	"estado": "1"
+},
+     {
+	"id": "84",
+	"Nome": "Cruzeiro do Sul",
+	"estado": "1"
+},
+     {
+	"id": "85",
+	"Nome": "Epitaciolândia",
+	"estado": "1"
+},
+     {
+	"id": "86",
+	"Nome": "Feijó",
+	"estado": "1"
+}
+]

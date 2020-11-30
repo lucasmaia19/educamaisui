@@ -8,6 +8,27 @@
             </div>
 
             <div class="p-col-12 p-md-6">
+                <label>Faixa Etárias</label>
+                <p-dropdown name="cidades" placeholder="Selecione" [(ngModel)]="faixaEtariaSelecionada.id"
+                 id="sel1"    required>
+                 <option value="0">--Selecione--</option>
+                 <option *ngFor="let faixaEtaria of faixaEtaria" value= {{faixaEtaria.id}}> {{faixaEtaria.nome}} </option>
+                </p-dropdown>
+            </div>
+
+            <div class="p-col-12 p-md-6">
+                <label>Campo de experiências</label>
+                <p-dropdown name="cidades" placeholder="Selecione" [ngClass]=""
+                    required></p-dropdown>
+            </div>
+
+            <div class="p-col-12 p-md-6">
+                <label>Objetivos de aprendizagem e desenvolvimento</label>
+                <p-dropdown name="cidades" placeholder="Selecione" [ngClass]=""
+                    required></p-dropdown>
+            </div>
+
+            <div class="p-col-12 p-md-6">
                 <label>TAG</label>
                 <input type="text" pInputText #tag name="tag" [(ngModel)]="atividade.tag">
             </div>
@@ -15,7 +36,7 @@
             <div class="p-col-12 p-md-6">
                 <p-fileUpload mode="advanced" #arquivo name="arquivo" url="{{apiUploadUrl}}"
                     [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
-            </div>
+                </div>
 
             <div class="p-col-12 p-md-6">
                 <button pButton type="button" label="Salvar" icon="pi pi-check" (click)="uploadComDados()"></button>
@@ -23,3 +44,8 @@
         </form>
     </div>
 </p-fieldset>
+
+<div class="p-col-12 p-md-6">
+    <button pButton type="button" label="Voltar" icon="pi pi-check" routerLink=""></button>
+</div>
+

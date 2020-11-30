@@ -2,7 +2,6 @@ import { Atividade } from './../atividade-cadastro/atividade-cadastro.component'
 import { CadastroService } from './../cadastro-.service';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pesquisaatividade',

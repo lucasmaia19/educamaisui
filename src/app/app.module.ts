@@ -1,3 +1,4 @@
+import { TesteService } from './atividade/teste/teste.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AtividadePesquisaComponent } from './atividade/atividade-pesquisa/atividade-pesquisa.component';
@@ -19,6 +20,8 @@ import { PanelModule } from 'primeng/panel';
 
 import { ButtonModule } from 'primeng/button';
 import {DataViewModule} from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { TesteComponent } from './atividade/teste/teste.component';
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
@@ -34,6 +37,7 @@ const routes: Routes = [
     AtividadeCadastroComponent,
     AtividadePesquisaComponent,
     NavbarComponent,
+    TesteComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,10 +53,11 @@ const routes: Routes = [
     PanelModule,
     ButtonModule,
     DataViewModule,
+    DropdownModule,
 
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [TesteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
