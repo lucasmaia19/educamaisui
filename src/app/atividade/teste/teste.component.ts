@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 //   styleUrls: ['./teste.component.css']
 })
 export class TesteComponent implements OnInit {
-paisSelecionado : Pais = new Pais(0,'Brasil') ;
+paisSelecionado : Pais = new Pais(0,'Brasil');
 paises: Pais[];
 cidades: Cidade[];
 

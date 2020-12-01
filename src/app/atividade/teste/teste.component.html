@@ -1,10 +1,10 @@
 <h2>País: </h2>
  <select class="form-control" [(ngModel)]="paisSelecionado.id" (change)="onSelect($event.target.value)" id="sel1">
-    <option value="0">--Selecione--</option>
+    <!-- <option value="0">--Selecione--</option> -->
     <option *ngFor="let pais of paises" value= {{pais.id}}> {{pais.nome}} </option>
  </select>
 
- <br>
+ <!-- <br> -->
 
  <div>
   <select class="form-control">
