@@ -9,30 +9,12 @@
 
             <div class="p-col-12 p-md-6">
                 <label>Faixa Etárias</label>
+                <p-dropdown name="faixaEtaria" placeholder="Selecione" required></p-dropdown>
+            </div>
 
-                <!-- <p-dropdown name="cidades" placeholder="Selecione" [(ngModel)]="faixaEtariaSelecionada.id"
-                     (change)="onSelect($event.target.value)" id="sel1" required>
-                    <option value="0">--Selecione--</option>
-                    <option *ngFor="let faixa of faixaEtaria" value= {{faixa.id}}> {{faixa.nome}} </option>
-                </p-dropdown> -->
-
-                <select class="form-control" [(ngModel)]="faixaEtariaSelecionada.id" (change)="onSelect($event.target.value)" id="sel1" name="firt">
-                    <!-- <option value="0">--Selecione--</option> -->
-                    <option *ngFor="let faixa of faixaEtaria" value= {{faixa.id}}> {{faixa.nome}} </option>
-                 </select>
-
-                 <label>Campo de experiências</label>
-                    <select class="form-control" [(ngModel)]="faixaCampoEx.id" (change)="onSelect($event.target.value)" id="sel2" name="firts">
-                        <!-- <option value="1">--Selecione--</option> -->
-                        <option *ngFor="let campo of campoEx" value= {{campo.id}}> {{campo.nome}} </option>
-                    </select>
-
-                    <label>Objetivos de aprendizagem e desenvolvimento</label>
-                    <select class="form-control">
-                      <!-- <option *ngIf='faixaEtariaSelecionada.id == 0 ' value="0">--Selecione--</option> -->
-                      <option *ngFor="let oade of oad" value= {{oade.id}}> {{oade.nome}} </option>
-                    </select>
-
+            <div class="p-col-12 p-md-6">
+                <label>Campo Experiencia</label>
+                <p-dropdown name="faixaEtaria" placeholder="Selecione" required></p-dropdown>
             </div>
 
             <!-- <div class="p-col-12 p-md-6">

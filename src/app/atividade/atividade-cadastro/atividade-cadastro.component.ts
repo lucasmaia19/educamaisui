@@ -1,6 +1,3 @@
-import { OAD } from './../model/oad';
-import { FaixaEtaria } from './../model/faixaEtaria';
-import { CampoEx } from './../model/campoEx';
 import { CadastroService } from './../cadastro-.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -24,13 +21,6 @@ export class AtividadeCadastroComponent implements OnInit {
     apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
     apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
 
-    faixaCampoEx : CampoEx = new CampoEx(22,'Traços, sons, cores e formas');
-    faixaEtariaSelecionada : FaixaEtaria = new FaixaEtaria(33,'Bebês (zero a 1 ano e 6 meses)');
-
-    campoEx: CampoEx[];
-    faixaEtaria: FaixaEtaria[];
-    oad: OAD[];
-
     atividade = new Atividade();
     @ViewChild('arquivo') arquivo: FileUpload;
 
@@ -38,10 +28,7 @@ export class AtividadeCadastroComponent implements OnInit {
         private http: HttpClient,
         private router: Router,
         private cadastroService: CadastroService,
-        ) {
-            this.campoEx = this.cadastroService.getCampoEx();
-            this.faixaEtaria = this.cadastroService.getFaixaEtaria();
-        }
+        ) { }
 
     ngOnInit(): void {
         this.atividade = { nome: 'Colorir', tag: 'Maternal' };
@@ -67,9 +54,5 @@ export class AtividadeCadastroComponent implements OnInit {
             timeout(10000);
             // this.router.navigate(['']);
         }
-
-        onSelect(id) {
-            this.oad = this.cadastroService.getOAD().filter((item) => (item.faixaEtariaId && item.campoExId == id))
-    }
 
 }
