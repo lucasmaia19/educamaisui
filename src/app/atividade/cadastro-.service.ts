@@ -8,11 +8,17 @@ export class CadastroService {
 
   constructor(private http: HttpClient) { }
 
-  consultar(): Promise<any> {
-    return this.http.get('http://localhost:8080/atvidade/')
+  consultarListaFaixaEtaria(): Promise<any> {
+      return this.http.get('http://localhost:8080/atividade/faixa-etaria')
+      .toPromise()
+      .then(response => {return response});
+  }
+
+  consultarListaCampoExperiencia(): Promise<any> {
+    return this.http.get('http://localhost:8080/atividade/campo-experiencia')
     .toPromise()
     .then(response => {return response});
-  }
+}
 
   listaCadastros() {
     return this.http.get('http://localhost:8080/atividade/')

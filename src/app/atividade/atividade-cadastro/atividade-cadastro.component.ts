@@ -8,7 +8,15 @@ import { timeout } from 'rxjs/operators';
 export class Atividade {
     nome?: string;
     tag?: string;
+    faixaEtaria?: string;
+    campoExperiencia?: string;
     arquivo?: File;
+}
+
+export class FaixaEtaria {
+    id?: number;
+    codigo?: string;
+    descricao?: string;
 }
 
 @Component({
@@ -24,14 +32,46 @@ export class AtividadeCadastroComponent implements OnInit {
     atividade = new Atividade();
     @ViewChild('arquivo') arquivo: FileUpload;
 
+    // faixaEtariaList = new Array<SelectItem>();
+    faixaEtariaList = new Array<any>();
+    campoExperienciaList = new Array<any>();
+
     constructor(
         private http: HttpClient,
         private router: Router,
         private cadastroService: CadastroService,
-        ) { }
+        ) {}
 
     ngOnInit(): void {
         this.atividade = { nome: 'Colorir', tag: 'Maternal' };
+
+        this.cadastroService.consultarListaFaixaEtaria()
+            .then(response => {
+                for (var item of response) {
+                    const dropDownItem = { label: item.descricao, value: item.id }
+                    this.faixaEtariaList.push(dropDownItem);
+               }
+        })
+
+        this.cadastroService.consultarListaCampoExperiencia()
+        .then(response => {
+            for (var item of response) {
+                const dropDownItem = { label: item.descricao, value: item.id }
+                this.campoExperienciaList.push(dropDownItem);
+           }
+      })
+    }
+
+    faixaEtariaAlterada() {
+        console.log('faixaEtariaAlterada()');
+
+        // Recupera a opção de faixa etaria.
+        console.log(this.atividade.faixaEtaria);
+
+        // Realizar uma requisição para a api usando a faixaEtaria como filtro
+
+        // Recuperar a resposta e adicionar na lista de objetivos e aprendizagem
+
     }
 
     uploadComDados(): void {
@@ -53,6 +93,6 @@ export class AtividadeCadastroComponent implements OnInit {
             .then(response => response);
             timeout(10000);
             // this.router.navigate(['']);
-        }
+    }
 
 }
