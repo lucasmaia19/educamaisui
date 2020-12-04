@@ -1,5 +1,5 @@
 import { CadastroService } from './../cadastro-.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ɵɵviewQuery } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileUpload } from 'primeng/fileupload';
 import { Router } from '@angular/router';
@@ -35,6 +35,7 @@ export class AtividadeCadastroComponent implements OnInit {
     // faixaEtariaList = new Array<SelectItem>();
     faixaEtariaList = new Array<any>();
     campoExperienciaList = new Array<any>();
+    aprendizagemDesenvolvimento = new Array<any>();
 
     constructor(
         private http: HttpClient,
@@ -48,7 +49,7 @@ export class AtividadeCadastroComponent implements OnInit {
         this.cadastroService.consultarListaFaixaEtaria()
             .then(response => {
                 for (var item of response) {
-                    const dropDownItem = { label: item.descricao, value: item.id }
+                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
                     this.faixaEtariaList.push(dropDownItem);
                }
         })
@@ -56,7 +57,7 @@ export class AtividadeCadastroComponent implements OnInit {
         this.cadastroService.consultarListaCampoExperiencia()
         .then(response => {
             for (var item of response) {
-                const dropDownItem = { label: item.descricao, value: item.id }
+                const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
                 this.campoExperienciaList.push(dropDownItem);
            }
       })
@@ -66,10 +67,44 @@ export class AtividadeCadastroComponent implements OnInit {
         console.log('faixaEtariaAlterada()');
 
         // Recupera a opção de faixa etaria.
-        console.log(this.atividade.faixaEtaria);
+        console.log("atividade.faixaEtaria", this.atividade.faixaEtaria);
+        console.log("atividade.campoExperiencia", this.atividade.campoExperiencia);
 
         // Realizar uma requisição para a api usando a faixaEtaria como filtro
 
+        if (this.atividade.faixaEtaria != null) {
+        this.cadastroService.consultarListaFaixaEtariaFiltroId(this.atividade.faixaEtaria)
+        .then(response =>
+            {
+                console.log(response)
+                for (var item of response) {
+                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                    this.aprendizagemDesenvolvimento.push(dropDownItem)
+                }
+            }
+        )
+    }  if (this.atividade.campoExperiencia != null) {
+
+        this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia)
+        .then(response =>
+            {
+                console.log(response)
+                for (var item of response) {
+                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                    this.aprendizagemDesenvolvimento.push(dropDownItem)
+                }
+            })
+        } if (this.atividade.campoExperiencia && this.atividade.faixaEtaria != null)
+
+        this.cadastroService.consultarCeFeFiltroId(this.atividade.campoExperiencia, this.atividade.faixaEtaria)
+        .then(response =>
+            {
+                console.log(response)
+                for (var item of response) {
+                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                    this.aprendizagemDesenvolvimento.push(dropDownItem)
+                }
+            })
         // Recuperar a resposta e adicionar na lista de objetivos e aprendizagem
 
     }

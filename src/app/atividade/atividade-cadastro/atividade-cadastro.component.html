@@ -19,13 +19,13 @@
                 <label>Campo Experiencia</label>
                 <p-dropdown [options]="campoExperienciaList" name="campoExperiencia" placeholder="Selecione" required
                 #faixaEtaria name="campoExperiencia" [(ngModel)]="atividade.campoExperiencia"
-                    (onChange)="faixaEtariaAlterada()"
+                (onChange)="faixaEtariaAlterada()"
                 ></p-dropdown>
             </div>
 
             <div class="p-col-12 p-md-6">
                 <label>Objetivos de aprendizagem e desenvolvimento</label>
-                <p-dropdown name="faixaEtaria" placeholder="Selecione" required></p-dropdown>
+                <p-dropdown [options]="aprendizagemDesenvolvimento" name="faixaEtaria" placeholder="Selecione" required></p-dropdown>
             </div>
 
             <!-- <div class="p-col-12 p-md-6">
