@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { AppComponent } from './app.component';
 import { AtividadePesquisaComponent } from './atividade/atividade-pesquisa/atividade-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,8 +18,10 @@ import { CardModule } from 'primeng/card';
 import { PanelModule } from 'primeng/panel';
 
 import { ButtonModule } from 'primeng/button';
-import {DataViewModule} from 'primeng/dataview';
+import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
@@ -50,10 +53,12 @@ const routes: Routes = [
     ButtonModule,
     DataViewModule,
     DropdownModule,
+    InputTextareaModule,
+    ToastModule,
 
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,22 +1,17 @@
 import { CadastroService } from './../cadastro-.service';
-import { Component, OnInit, ViewChild, ɵɵviewQuery } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileUpload } from 'primeng/fileupload';
 import { Router } from '@angular/router';
-import { timeout } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
 
 export class Atividade {
     nome?: string;
+    enunciado?: string;
     tag?: string;
     faixaEtaria?: string;
     campoExperiencia?: string;
     arquivo?: File;
-}
-
-export class FaixaEtaria {
-    id?: number;
-    codigo?: string;
-    descricao?: string;
 }
 
 @Component({
@@ -32,7 +27,8 @@ export class AtividadeCadastroComponent implements OnInit {
     atividade = new Atividade();
     @ViewChild('arquivo') arquivo: FileUpload;
 
-    // faixaEtariaList = new Array<SelectItem>();
+    atividades: any;
+
     faixaEtariaList = new Array<any>();
     campoExperienciaList = new Array<any>();
     aprendizagemDesenvolvimento = new Array<any>();
@@ -41,72 +37,106 @@ export class AtividadeCadastroComponent implements OnInit {
         private http: HttpClient,
         private router: Router,
         private cadastroService: CadastroService,
+        private messageService: MessageService
         ) {}
 
     ngOnInit(): void {
-        this.atividade = { nome: 'Colorir', tag: 'Maternal' };
+        this.atividade = { nome: 'Colorir',
+             enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
 
-        this.cadastroService.consultarListaFaixaEtaria()
-            .then(response => {
-                for (var item of response) {
-                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
-                    this.faixaEtariaList.push(dropDownItem);
-               }
-        })
+        this.consultarListaFaixaEtaria();
+        this.consultarListaCampoExperiencia();
+    }
 
+    consultarListaCampoExperiencia() {
         this.cadastroService.consultarListaCampoExperiencia()
         .then(response => {
             for (var item of response) {
                 const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
                 this.campoExperienciaList.push(dropDownItem);
            }
-      })
+        })
     }
 
-    faixaEtariaAlterada() {
+    consultarListaFaixaEtaria() {
+        this.cadastroService.consultarListaFaixaEtaria()
+        .then(response => {
+            for (var item of response) {
+                const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                this.faixaEtariaList.push(dropDownItem);
+               }
+         })
+    }
+
+    aprendizagemDesenvolvimentoAlterada() {
+
         console.log('faixaEtariaAlterada()');
+        this.aprendizagemDesenvolvimento = new Array<any>();
 
         // Recupera a opção de faixa etaria.
-        console.log("atividade.faixaEtaria", this.atividade.faixaEtaria);
-        console.log("atividade.campoExperiencia", this.atividade.campoExperiencia);
+        // console.log("atividade.faixaEtaria", this.atividade.faixaEtaria);
+        // console.log("atividade.campoExperiencia", this.atividade.campoExperiencia);
+        console.log("antes da alteracao: this.aprendizagemDesenvolvimento", this.aprendizagemDesenvolvimento);
 
         // Realizar uma requisição para a api usando a faixaEtaria como filtro
 
-        if (this.atividade.faixaEtaria != null) {
-        this.cadastroService.consultarListaFaixaEtariaFiltroId(this.atividade.faixaEtaria)
-        .then(response =>
-            {
-                console.log(response)
-                for (var item of response) {
-                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
-                    this.aprendizagemDesenvolvimento.push(dropDownItem)
-                }
-            }
-        )
-    }  if (this.atividade.campoExperiencia != null) {
+        if (this.atividade.campoExperiencia != undefined && this.atividade.faixaEtaria != undefined) {
 
-        this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia)
-        .then(response =>
-            {
-                console.log(response)
-                for (var item of response) {
-                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
-                    this.aprendizagemDesenvolvimento.push(dropDownItem)
-                }
-            })
-        } if (this.atividade.campoExperiencia && this.atividade.faixaEtaria != null)
+            // console.log('this.atividade.campoExperiencia != undefined && this.atividade.faixaEtaria != undefined');
 
-        this.cadastroService.consultarCeFeFiltroId(this.atividade.campoExperiencia, this.atividade.faixaEtaria)
-        .then(response =>
-            {
-                console.log(response)
-                for (var item of response) {
-                    const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
-                    this.aprendizagemDesenvolvimento.push(dropDownItem)
-                }
-            })
+            this.cadastroService.consultarCeFeFiltroId(this.atividade.campoExperiencia, this.atividade.faixaEtaria)
+                .then(response =>
+                    {
+                        console.log(response)
+                        for (var item of response) {
+                            const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                            this.aprendizagemDesenvolvimento.push(dropDownItem)
+                        }
+                    })
+
+        } else if (this.atividade.campoExperiencia != undefined) {
+
+            // console.log('this.atividade.campoExperiencia != undefined');
+
+            this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia)
+                .then(response =>
+                    {
+                        console.log(response)
+                        for (var item of response) {
+                            const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                            this.aprendizagemDesenvolvimento.push(dropDownItem)
+                        }
+                    })
+
+        } else if (this.atividade.faixaEtaria != undefined) {
+
+            // console.log('dentro de this.atividade.faixaEtaria != undefined');
+
+            this.cadastroService.consultarListaFaixaEtariaFiltroId(this.atividade.faixaEtaria)
+                .then(response =>
+                    {
+                        console.log(response)
+                        for (var item of response) {
+                            const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                            this.aprendizagemDesenvolvimento.push(dropDownItem)
+                        }
+                    }
+                )
+        }
+
+        console.log("depois da alteracao: this.aprendizagemDesenvolvimento", this.aprendizagemDesenvolvimento);
+
         // Recuperar a resposta e adicionar na lista de objetivos e aprendizagem
+    }
 
+    listaCadastros() {
+        console.log("teste")
+        this.cadastroService.listaCadastros()
+        .then(response => {
+            this.atividades = response;
+            console.log(this.atividades);
+            // this.router.navigate([''])
+        })
     }
 
     uploadComDados(): void {
@@ -125,9 +155,13 @@ export class AtividadeCadastroComponent implements OnInit {
 
         this.http.post(this.apiuploadComDadosUrl, formData)
             .toPromise()
-            .then(response => response);
-            timeout(10000);
+            .then(response => {
+            this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
+            console.log("enunciado:", this.atividade.enunciado)
+            this.listaCadastros();
+        })
             // this.router.navigate(['']);
+            // this.pesquisaComponent.listaCadastros()
+            // this.cadastroService.listaCadastros();
     }
-
 }

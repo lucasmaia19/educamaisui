@@ -8,10 +8,15 @@
             </div>
 
             <div class="p-col-12 p-md-6">
+                <label>Enunciado</label>
+                <textarea pInputTextarea name="enunciado" [(ngModel)]="atividade.enunciado"></textarea>
+            </div>
+
+            <div class="p-col-12 p-md-6">
                 <label>Faixa Etárias</label>
                 <p-dropdown [options]="faixaEtariaList" placeholder="Selecione" required
                     #faixaEtaria name="faixaEtaria" [(ngModel)]="atividade.faixaEtaria"
-                    (onChange)="faixaEtariaAlterada()"
+                    (onChange)="aprendizagemDesenvolvimentoAlterada()"
                     ></p-dropdown>
             </div>
 
@@ -19,7 +24,7 @@
                 <label>Campo Experiencia</label>
                 <p-dropdown [options]="campoExperienciaList" name="campoExperiencia" placeholder="Selecione" required
                 #faixaEtaria name="campoExperiencia" [(ngModel)]="atividade.campoExperiencia"
-                (onChange)="faixaEtariaAlterada()"
+                (onChange)="aprendizagemDesenvolvimentoAlterada()"
                 ></p-dropdown>
             </div>
 

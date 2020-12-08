@@ -28,7 +28,7 @@
                   <div class="product-grid-item-top">
                       <div>
                           <i class="pi pi-tag product-category-icon"></i>
-                          <span class="product-category"> {{atividade.tag}}</span>
+                          <span class="product-category"> {{atividade.nome}}</span>
                       </div>
                       <!-- <span [class]="'product-badge status-' + atividade.inventoryStatus.toLowerCase()">{{atividade.inventoryStatus}}</span> -->
                   </div>
@@ -36,6 +36,7 @@
                       <img [src]=converteImagemBase64ParaHtml(atividade.arquivo) style="width: 300px; height: 300px; object-fit: cover;"/>
                       <div class="product-name">{{"Atividade: " + atividade.nome}}</div>
                       <p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade)"></p-button>
+                      <p-button type="button" icon="pi pi-trash" styleClass="p-button-text" (click)="deletarCadastro(atividade.id)"></p-button>
                   </div>
                   <div class="product-grid-item-bottom">
                   </div>
@@ -47,4 +48,8 @@
 
 <div class="p-field p-col-6 p-md-3">
     <p-button label="Nova Atividade" icon="pi pi-plus" routerLink="/atividade"></p-button>
+</div>
+
+<div class="p-field p-col-6 p-md-3">
+    <p-button label="Teste" icon="pi pi-plus" (click)="teste()"></p-button>
 </div>
