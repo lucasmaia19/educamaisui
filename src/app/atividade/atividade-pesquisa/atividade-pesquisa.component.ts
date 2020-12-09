@@ -1,4 +1,4 @@
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Atividade } from './../atividade-cadastro/atividade-cadastro.component';
 import { CadastroService } from './../cadastro-.service';
@@ -14,11 +14,14 @@ export class AtividadePesquisaComponent implements OnInit {
 
     atividades: any;
 
+    requestProgress = false;
+
   constructor(
     private cadastroService: CadastroService,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -35,12 +38,17 @@ export class AtividadePesquisaComponent implements OnInit {
     }
 
     deletarCadastro(id: number) {
+        this.confirmationService.confirm({
+        message: 'Tem certeza que deseja excluir?',
+        accept: () => {
         this.cadastroService.deletarCadastro(id)
         .then(response => {
             this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
             console.log("Id " + id + " excluido" )
             this.listaCadastros
-        })
+            });
+        }
+    })
     }
 
     converteImagemBase64ParaHtml(imagem: any) {
@@ -52,6 +60,12 @@ export class AtividadePesquisaComponent implements OnInit {
     }
 
     gerarPDF(atividade: Atividade) {
+
+        if (this.requestProgress) {
+            return;
+          }
+
+        this.requestProgress = true;
         this.messageService.add({severity:'info', summary: ('PDF Sendo Gerado. Aguarde!')})
         console.log("gerarPDF")
         console.log(atividade)
@@ -60,6 +74,8 @@ export class AtividadePesquisaComponent implements OnInit {
             console.log(response);
             const fileURL = URL.createObjectURL(response);
             window.open(fileURL, '_blank');
+            this.messageService.add({severity:'success', summary:'PDF Gerado'});
+            this.requestProgress = false;
         });
     }
 

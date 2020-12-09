@@ -29,6 +29,8 @@ export class AtividadeCadastroComponent implements OnInit {
 
     atividades: any;
 
+    requestProgress = false;
+
     faixaEtariaList = new Array<any>();
     campoExperienciaList = new Array<any>();
     aprendizagemDesenvolvimento = new Array<any>();
@@ -141,6 +143,12 @@ export class AtividadeCadastroComponent implements OnInit {
 
     uploadComDados(): void {
 
+        if (this.requestProgress) {
+            return;
+          }
+
+        this.requestProgress = true;
+
         const formData = new FormData();
 
         const dados = this.atividade;
@@ -159,6 +167,7 @@ export class AtividadeCadastroComponent implements OnInit {
             this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
             console.log("enunciado:", this.atividade.enunciado)
             this.listaCadastros();
+            this.requestProgress = false;
         })
             // this.router.navigate(['']);
             // this.pesquisaComponent.listaCadastros()

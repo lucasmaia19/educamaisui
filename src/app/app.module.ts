@@ -1,4 +1,4 @@
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppComponent } from './app.component';
 import { AtividadePesquisaComponent } from './atividade/atividade-pesquisa/atividade-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -22,6 +22,9 @@ import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProgressBarModule } from 'primeng/progressbar';
+
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
@@ -55,10 +58,12 @@ const routes: Routes = [
     DropdownModule,
     InputTextareaModule,
     ToastModule,
+    ConfirmDialogModule,
+    ProgressBarModule,
 
     RouterModule.forRoot(routes)
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

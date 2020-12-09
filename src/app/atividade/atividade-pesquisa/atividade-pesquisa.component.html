@@ -1,4 +1,9 @@
 <div class="card">
+
+    <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
+        <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+    </div>
+
   <p-dataView #dv [value]="atividades" [paginator]="true" [rows]="9" filterBy="name" layout="grid">
       <ng-template pTemplate="header">
           <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
@@ -14,7 +19,7 @@
           <div class="p-col-12">
             <div class="product-list-item">
               <div class="product-list-detail">
-                 <i class="pi pi-tag product-category-icon"></i><span class="product-category"> {{atividade.tag}}</span>
+                 <i class="pi pi-tag product-category-icon"></i><span class="product-category"></span>
                  <div class="product-name"> {{atividade.nome}}</div>
               </div>
               <img [src]=converteImagemBase64ParaHtml(atividade.arquivo) style="width: 200px; height: 200px; object-fit: cover;"/>
@@ -35,8 +40,8 @@
                   <div class="product-grid-item-content">
                       <img [src]=converteImagemBase64ParaHtml(atividade.arquivo) style="width: 300px; height: 300px; object-fit: cover;"/>
                       <div class="product-name">{{"Atividade: " + atividade.nome}}</div>
-                      <p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade)"></p-button>
-                      <p-button type="button" icon="pi pi-trash" styleClass="p-button-text" (click)="deletarCadastro(atividade.id)"></p-button>
+                      <p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade)" [disabled]="requestProgress"></p-button>
+                      <p-button type="button" icon="pi pi-trash" styleClass="p-button-text" (click)="deletarCadastro(atividade.id)" [disabled]="requestProgress"></p-button>
                   </div>
                   <div class="product-grid-item-bottom">
                   </div>
