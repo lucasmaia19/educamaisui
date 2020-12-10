@@ -8,7 +8,6 @@ import { MessageService } from 'primeng/api';
 export class Atividade {
     nome?: string;
     enunciado?: string;
-    tag?: string;
     faixaEtaria?: string;
     campoExperiencia?: string;
     arquivo?: File;
@@ -37,9 +36,9 @@ export class AtividadeCadastroComponent implements OnInit {
 
     constructor(
         private http: HttpClient,
+        private messageService: MessageService,
         private router: Router,
         private cadastroService: CadastroService,
-        private messageService: MessageService
         ) {}
 
     ngOnInit(): void {

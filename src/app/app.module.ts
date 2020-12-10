@@ -1,3 +1,4 @@
+import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppComponent } from './app.component';
 import { AtividadePesquisaComponent } from './atividade/atividade-pesquisa/atividade-pesquisa.component';
@@ -24,14 +25,17 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressBarModule } from 'primeng/progressbar';
-
+import { CalendarModule } from 'primeng/calendar';
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
 
     { path: 'atividade', component: AtividadeCadastroComponent },
 
+    { path: 'cabecalho', component: CabecalhoComponent },
+
     { path: 'ativade/:id', component: AtividadeCadastroComponent }
+
   ]
 
 @NgModule({
@@ -39,6 +43,7 @@ const routes: Routes = [
     AppComponent,
     AtividadeCadastroComponent,
     AtividadePesquisaComponent,
+    CabecalhoComponent,
     NavbarComponent,
   ],
   imports: [
@@ -60,6 +65,7 @@ const routes: Routes = [
     ToastModule,
     ConfirmDialogModule,
     ProgressBarModule,
+    CalendarModule,
 
     RouterModule.forRoot(routes)
   ],
