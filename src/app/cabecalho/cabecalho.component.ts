@@ -43,19 +43,8 @@ export class CabecalhoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.cabecalho = { professora: 'Flavia',
-                        aluno: 'Lucas',
-                        turma: 'Turma B',
-                        nomeEscola: 'IFTM',
-                        logradouro: 'Fazenda capim branco',
-                        tel: '32262292',
-                        cep: '38401591',
-                        data: new Date(),
-                        email: 'lucasmaia@gmail.com',
-                    };
-
       this.pt = {
-        firstDayOfWeek: 0,
+        firstDayOfWeek: 1,
         dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
         dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
@@ -64,31 +53,82 @@ export class CabecalhoComponent implements OnInit {
         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
         today: 'Hoje',
         clear: 'Limpar'
-        }
+        };
+
+    this.cabecalho = {
+        professora: 'Flavia',
+        aluno: 'Lucas',
+        turma: 'Turma B',
+        nomeEscola: 'IFTM',
+        logradouro: 'Fazenda capim branco',
+        tel: '32262292',
+        cep: '38401591',
+        data: new Date(),
+        // data: "19/03/2001",
+        email: 'lucasmaia@gmail.com',
+        };
+
 
     }
 
     uploadComDadosCabecalho(): void {
 
-        console.log(this.cabecalho.data)
+        // console.log(this.cabecalho.data)
 
-        let data = moment(this.cabecalho.data, "DDMMYYYY");
-        console.log(data);
+        // let data = moment(this.cabecalho.data, "DDMMYYYY");
+        // console.log("data", data);
 
-        const dataFormatada = data.format("YYYY-MM-DD");
-        console.log(dataFormatada);
+        // const dataFormatada = data.format("YYYY-MM-DD");
+        // console.log("dataFormatada", dataFormatada);
 
-        this.cabecalho.data = data.toDate();
+        // this.cabecalho.data = data.toDate()
+
+        // let data = moment(this.cabecalho.data, "DDMMYYYY");
+        // data.format("YYYY-MM-DD")
+        // console.log(data);
+
+        // const dataFormatada = data.format("YYYY-MM-DD");
+        // console.log("dataFormatada" ,dataFormatada);
+
+        // this.cabecalho.data = data.toDate()
+
+
+        // const data = moment(this.cabecalho.data, "DDMMYYYY");
+        // const data = moment(this.cabecalho.data).toDate()
+        // console.log("data", data);
+
+        // data.format("YYYY-MM-DD")
+        // console.log("dataFormatada", data.format("YYYY-MM-DD"));
+        // let dataFormatada = data.format("YYYY-MM-DD")
+        // console.log("dataFormatada", this.cabecalho.data.format("YYYY-MM-DD"));
+
+        // const dataFormatada = moment(this.cabecalho.data, "YYYY-MM-DD")
+        // console.log("dataFormatada", dataFormatada);
+
+        // this.cabecalho.data = dataFormatada
 
         // console.info("data tipo Moment " + data.format("DD/MM/YYYY"));
         // data.format("DD/MM/YYYY")
+
+        // let data = this.cabecalho.data
+
+        // let dataFormatada = moment(data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate() ))
+        // console.log("dataFormatada", dataFormatada);
+
+        // let dataFormatada = (data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate() ))
+        // console.log("dataFormatada", dataFormatada);
+
+        // this.cabecalho.data = dataFormatada
+
+
 
         // return;
 
 
 
 
-        console.log(this.cabecalho.data)
+        // let data = moment(this.cabecalho.data, "DDMMYYYY");
+
 
         if (this.requestProgress) {
             return;
@@ -96,12 +136,42 @@ export class CabecalhoComponent implements OnInit {
 
         this.requestProgress = true;
 
+
         const formData = new FormData();
 
+        console.warn(this.cabecalho.data)
+
         const dados = this.cabecalho;
-        Object.keys(dados).forEach(k => {
-            formData.append(k, dados[k]);
+        console.warn(dados)
+
+        Object.keys(dados).forEach(item => {
+
+            console.warn(item);
+            console.info(dados[item]);
+
+            if (dados[item] === undefined || dados[item] === null) {
+                return;
+
+            } else if (dados[item] instanceof Date) {
+                let dataDummy1 = moment(this.cabecalho.data);
+                console.log('dataDummy1', dataDummy1)
+                let dataDummy2 = dataDummy1.format("YYYY-MM-DD");
+                console.log('dataDummy2', dataDummy2);
+                formData.append('data', dataDummy2);
+
+            } else {
+                formData.append(item, dados[item]);
+            }
+
         });
+
+        // formData.append('professora', this.cabecalho.professora);
+
+        // let dataDummy1 = moment(this.cabecalho.data);
+        // console.log('dataDummy1', dataDummy1)
+        // let dataDummy2 = dataDummy1.format("YYYY-MM-DD");
+        // console.log('dataDummy2', dataDummy2);
+        // formData.append('data', dataDummy2);
 
         const logoPrefeitura = this.logoPrefeitura._files[0];
         if (logoPrefeitura !== undefined) {
@@ -117,7 +187,7 @@ export class CabecalhoComponent implements OnInit {
         .toPromise()
         .then(cabecalho => {
             console.log(cabecalho)
-            this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
+            this.messageService.add({severity:'success', summary:'Cabeçalho adicionado com sucesso!'});
         })
 
         this.requestProgress = false;

@@ -14,6 +14,8 @@ export class AtividadePesquisaComponent implements OnInit {
 
     atividades: any;
 
+    items: any;
+
     requestProgress = false;
 
   constructor(
@@ -25,6 +27,24 @@ export class AtividadePesquisaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.items = [
+        {
+            label: 'Nova Atividade',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+                this.router.navigate(['atividade']);
+            }
+        },
+        {
+            label:'Cadastrar Cabeçalho',
+            icon:'pi pi-fw pi-plus',
+            command: () => {
+                this.router.navigate(['cabecalho']);
+            }
+        }
+    ]
+
     this.listaCadastros();
     }
 

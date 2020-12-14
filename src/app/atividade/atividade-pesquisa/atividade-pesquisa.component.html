@@ -1,5 +1,14 @@
 <div class="card">
 
+    <div class = "p-field p-col-6 p-md-12">
+        <p-menubar [model]="items">
+            <div>
+                <input type="text" pInputText placeholder="Search">
+                <button type="button" pButton label="Logout" icon="pi pi-power-off" style="margin-left:.25em"></button>
+            </div>
+        </p-menubar>
+    </div>
+
     <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
     </div>
@@ -51,10 +60,10 @@
   </p-dataView>
 </div>
 
-<div class="p-field p-col-6 p-md-3">
+<!-- <div class="p-field p-col-6 p-md-3">
     <p-button label="Nova Atividade" icon="pi pi-plus" routerLink="/atividade"></p-button>
 </div>
 
 <div class="p-field p-col-6 p-md-3">
     <p-button label="Cadastrar cabeçalho" icon="pi pi-plus" routerLink="/cabecalho"></p-button>
-</div>
+</div> -->

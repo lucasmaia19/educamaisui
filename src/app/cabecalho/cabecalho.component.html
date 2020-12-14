@@ -1,4 +1,4 @@
-<p-fieldset legend="Cadastro do Cabecalho">
+<p-fieldset legend="Cabeçalho do Cabecalho">
 
     <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
@@ -20,7 +20,6 @@
             <div class="p-col-12 p-md-6">
                 <label>Data</label>
                 <p-calendar type="text" [locale]="pt" name="data" dateFormat="dd/mm/yy" #data [(ngModel)]="cabecalho.data" required></p-calendar>
-                <!-- <input type="text" pInputText #data name="data" [(ngModel)]="cabecalho.data"> -->
             </div>
 
             <div class="p-col-12 p-md-6">
