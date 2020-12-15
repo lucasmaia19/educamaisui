@@ -26,7 +26,9 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { CalendarModule } from 'primeng/calendar';
-import {MenubarModule} from 'primeng/menubar';
+import { MenubarModule } from 'primeng/menubar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TableModule } from 'primeng/table';
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
@@ -68,6 +70,8 @@ const routes: Routes = [
     ProgressBarModule,
     CalendarModule,
     MenubarModule,
+    OverlayPanelModule,
+    TableModule,
 
     RouterModule.forRoot(routes)
   ],

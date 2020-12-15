@@ -1,3 +1,5 @@
+import { CabecalhoService } from './../../cabecalho/cabecalho.service';
+import { Cabecalho, CabecalhoComponent } from './../../cabecalho/cabecalho.component';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Atividade } from './../atividade-cadastro/atividade-cadastro.component';
@@ -14,38 +16,50 @@ export class AtividadePesquisaComponent implements OnInit {
 
     atividades: any;
 
+    cabecalho: any;
+
     items: any;
+
+    // cabecalho = Cabecalho[];
+
+    selectedProduct: any;
 
     requestProgress = false;
 
-  constructor(
-    private cadastroService: CadastroService,
-    private sanitizer: DomSanitizer,
-    private router: Router,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
-  ) { }
+    constructor(
+        private cadastroService: CadastroService,
+        private sanitizer: DomSanitizer,
+        private router: Router,
+        private messageService: MessageService,
+        private confirmationService: ConfirmationService,
+        private cabecalhoService: CabecalhoService
+    ) { }
 
   ngOnInit() {
 
-    this.items = [
-        {
-            label: 'Nova Atividade',
-            icon: 'pi pi-fw pi-plus',
-            command: () => {
-                this.router.navigate(['atividade']);
-            }
-        },
-        {
-            label:'Cadastrar Cabeçalho',
-            icon:'pi pi-fw pi-plus',
-            command: () => {
-                this.router.navigate(['cabecalho']);
-            }
-        }
-    ]
-
+    this.listaCabecalhos()
     this.listaCadastros();
+
+        this.items = [
+            {
+                label: 'Nova Atividade',
+                icon: 'pi pi-fw pi-plus',
+                command: () => {
+                    this.router.navigate(['atividade']);
+                }
+            },
+            {
+                label:'Cadastrar Cabeçalho',
+                icon:'pi pi-fw pi-plus',
+                command: () => {
+                    this.router.navigate(['cabecalho']);
+                }
+            }
+        ]
+    }
+
+    onRowSelect(event) {
+        this.messageService.add({severity: 'info', summary: 'Cabeçalho Selecionado'});
     }
 
     listaCadastros() {
@@ -88,7 +102,7 @@ export class AtividadePesquisaComponent implements OnInit {
         this.requestProgress = true;
         this.messageService.add({severity:'info', summary: ('PDF Sendo Gerado. Aguarde!')})
         console.log("gerarPDF")
-        console.log(atividade)
+        console.log("atividade", atividade)
         this.cadastroService.gerarPDF(atividade)
         .then(response => {
             console.log(response);
@@ -97,6 +111,16 @@ export class AtividadePesquisaComponent implements OnInit {
             this.messageService.add({severity:'success', summary:'PDF Gerado'});
             this.requestProgress = false;
         });
+
+        this.requestProgress = false;
+    }
+
+    listaCabecalhos() {
+        this.cabecalhoService.listaCabecalhos()
+        .then(response => {
+            this.cabecalho = response;
+            console.log("resposta", response);
+        })
     }
 
     teste() {

@@ -42,6 +42,7 @@ export class AtividadeCadastroComponent implements OnInit {
         ) {}
 
     ngOnInit(): void {
+
         this.atividade = { nome: 'Colorir',
              enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
 

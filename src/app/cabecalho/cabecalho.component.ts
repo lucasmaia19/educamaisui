@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
+import { CabecalhoService } from './cabecalho.service';
 
 export class Cabecalho {
     professora?: string;
@@ -36,12 +37,15 @@ export class CabecalhoComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private cabecalhoService: CabecalhoService,
     private messageService: MessageService,
   ) { }
 
   pt: any;
 
   ngOnInit(): void {
+
+    this.listaCabecalhos()
 
       this.pt = {
         firstDayOfWeek: 1,
@@ -64,71 +68,11 @@ export class CabecalhoComponent implements OnInit {
         tel: '32262292',
         cep: '38401591',
         data: new Date(),
-        // data: "19/03/2001",
         email: 'lucasmaia@gmail.com',
         };
-
-
     }
 
     uploadComDadosCabecalho(): void {
-
-        // console.log(this.cabecalho.data)
-
-        // let data = moment(this.cabecalho.data, "DDMMYYYY");
-        // console.log("data", data);
-
-        // const dataFormatada = data.format("YYYY-MM-DD");
-        // console.log("dataFormatada", dataFormatada);
-
-        // this.cabecalho.data = data.toDate()
-
-        // let data = moment(this.cabecalho.data, "DDMMYYYY");
-        // data.format("YYYY-MM-DD")
-        // console.log(data);
-
-        // const dataFormatada = data.format("YYYY-MM-DD");
-        // console.log("dataFormatada" ,dataFormatada);
-
-        // this.cabecalho.data = data.toDate()
-
-
-        // const data = moment(this.cabecalho.data, "DDMMYYYY");
-        // const data = moment(this.cabecalho.data).toDate()
-        // console.log("data", data);
-
-        // data.format("YYYY-MM-DD")
-        // console.log("dataFormatada", data.format("YYYY-MM-DD"));
-        // let dataFormatada = data.format("YYYY-MM-DD")
-        // console.log("dataFormatada", this.cabecalho.data.format("YYYY-MM-DD"));
-
-        // const dataFormatada = moment(this.cabecalho.data, "YYYY-MM-DD")
-        // console.log("dataFormatada", dataFormatada);
-
-        // this.cabecalho.data = dataFormatada
-
-        // console.info("data tipo Moment " + data.format("DD/MM/YYYY"));
-        // data.format("DD/MM/YYYY")
-
-        // let data = this.cabecalho.data
-
-        // let dataFormatada = moment(data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate() ))
-        // console.log("dataFormatada", dataFormatada);
-
-        // let dataFormatada = (data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate() ))
-        // console.log("dataFormatada", dataFormatada);
-
-        // this.cabecalho.data = dataFormatada
-
-
-
-        // return;
-
-
-
-
-        // let data = moment(this.cabecalho.data, "DDMMYYYY");
-
 
         if (this.requestProgress) {
             return;
@@ -193,4 +137,11 @@ export class CabecalhoComponent implements OnInit {
         this.requestProgress = false;
     }
 
+    listaCabecalhos() {
+        this.cabecalhoService.listaCabecalhos()
+        .then(response => {
+            this.cabecalho = response;
+            console.log("resposta", response);
+        })
+    }
 }
