@@ -1,9 +1,10 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
-import { CabecalhoService } from './cabecalho.service';
+import { CabecalhoService } from '../cabecalho.service';
 
 export class Cabecalho {
     professora?: string;
@@ -39,13 +40,14 @@ export class CabecalhoComponent implements OnInit {
     private http: HttpClient,
     private cabecalhoService: CabecalhoService,
     private messageService: MessageService,
+    private router: Router,
   ) { }
 
   pt: any;
 
   ngOnInit(): void {
 
-    this.listaCabecalhos()
+    // this.listaCabecalhos()
 
       this.pt = {
         firstDayOfWeek: 1,
@@ -135,6 +137,7 @@ export class CabecalhoComponent implements OnInit {
         })
 
         this.requestProgress = false;
+        this.router.navigate([''])
     }
 
     listaCabecalhos() {

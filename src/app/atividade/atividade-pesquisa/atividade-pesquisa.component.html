@@ -3,8 +3,8 @@
     <div class = "p-field p-col-6 p-md-12">
         <p-menubar [model]="items">
             <div>
-                <input type="text" pInputText placeholder="Search">
-                <button type="button" pButton label="Logout" icon="pi pi-power-off" style="margin-left:.25em"></button>
+                <input type="text" pInputText placeholder="Pesquisar">
+                <button type="button" pButton label="Sair" icon="pi pi-power-off" style="margin-left:.25em"></button>
             </div>
         </p-menubar>
     </div>
@@ -58,11 +58,11 @@
 
                       <p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '450px'}"  [appendTo]="'body'">
                           <ng-template pTemplate>
-                            <div>
+                            <div class="p-field p-col-6 p-md-12">
                                 <th>Escoha seu cabeçalho</th>
                             </div>
                             <p-table [value]="cabecalho" selectionMode="single" [(selection)]="selectedProduct"
-                                (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
+                                (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="3">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th>Nome da Escola</th>
@@ -74,7 +74,7 @@
                                     <tr [pSelectableRow]="rowData">
                                         <td>{{cabecalho.nomeEscola}}</td>
                                         <td>{{cabecalho.turma}}</td>
-                                        <td><p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade)" [disabled]="requestProgress"></p-button></td>
+                                        <td><p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade, cabecalho)" [disabled]="requestProgress"></p-button></td>
                                     </tr>
                                 </ng-template>
                             </p-table>
@@ -89,6 +89,3 @@
       </ng-template>
   </p-dataView>
 </div>
-
-
-

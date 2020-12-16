@@ -1,9 +1,10 @@
-import { CabecalhoComponent } from './cabecalho/cabecalho.component';
+import { CabecalhoComponent } from './cabecalho/cabecalho-cadastrar/cabecalho.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppComponent } from './app.component';
 import { AtividadePesquisaComponent } from './atividade/atividade-pesquisa/atividade-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AtividadeCadastroComponent } from './atividade/atividade-cadastro/atividade-cadastro.component';
+import { GerenciarCabecalhoComponent } from './cabecalho/cabecalho-gerenciar/gerenciar-cabecalho.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,6 +30,11 @@ import { CalendarModule } from 'primeng/calendar';
 import { MenubarModule } from 'primeng/menubar';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TableModule } from 'primeng/table';
+import { ToolbarModule } from 'primeng/toolbar';
+import { DialogModule } from 'primeng/dialog';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { RatingModule } from 'primeng/rating';
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
@@ -37,7 +43,9 @@ const routes: Routes = [
 
     { path: 'cabecalho', component: CabecalhoComponent },
 
-    { path: 'ativade/:id', component: AtividadeCadastroComponent }
+    { path: 'ativade/:id', component: AtividadeCadastroComponent },
+
+    { path: 'gerenciar-cabecalho', component: GerenciarCabecalhoComponent }
 
   ]
 
@@ -48,6 +56,7 @@ const routes: Routes = [
     AtividadePesquisaComponent,
     CabecalhoComponent,
     NavbarComponent,
+    GerenciarCabecalhoComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +81,11 @@ const routes: Routes = [
     MenubarModule,
     OverlayPanelModule,
     TableModule,
+    ToolbarModule,
+    DialogModule,
+    InputNumberModule,
+    RadioButtonModule,
+    RatingModule,
 
     RouterModule.forRoot(routes)
   ],

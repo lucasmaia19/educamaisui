@@ -50,13 +50,13 @@ export class CadastroService {
             .then(response => {return response})
     }
 
-    gerarPDF(atividade: any) {
+    gerarPDF(atividade: any, cabecalho: any) {
 
         console.log("gerarPDF service")
-        console.log(atividade)
-        console.log(atividade.id)
+        console.log("atividade.id", atividade.id)
+        console.log("cabecalho.id", cabecalho.id)
 
-        const url = `http://localhost:8080/atividade/gerar-pdf/${atividade.id}`;
+        const url = `http://localhost:8080/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
         console.log(url)
 
         return this.http.get(url, { responseType: 'blob' })

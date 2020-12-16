@@ -1,5 +1,5 @@
 import { CabecalhoService } from './../../cabecalho/cabecalho.service';
-import { Cabecalho, CabecalhoComponent } from './../../cabecalho/cabecalho.component';
+import { Cabecalho } from './../../cabecalho/cabecalho-cadastrar/cabecalho.component';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Atividade } from './../atividade-cadastro/atividade-cadastro.component';
@@ -54,6 +54,14 @@ export class AtividadePesquisaComponent implements OnInit {
                 command: () => {
                     this.router.navigate(['cabecalho']);
                 }
+            },
+            {
+
+                label:'Gerenciar Cabeçalho',
+                icon:'pi pi-cog',
+                command: () => {
+                    this.router.navigate(['gerenciar-cabecalho']);
+                }
             }
         ]
     }
@@ -93,7 +101,7 @@ export class AtividadePesquisaComponent implements OnInit {
         return novaImagem;
     }
 
-    gerarPDF(atividade: Atividade) {
+    gerarPDF(atividade: Atividade, cabecalho: Cabecalho) {
 
         if (this.requestProgress) {
             return;
@@ -103,7 +111,8 @@ export class AtividadePesquisaComponent implements OnInit {
         this.messageService.add({severity:'info', summary: ('PDF Sendo Gerado. Aguarde!')})
         console.log("gerarPDF")
         console.log("atividade", atividade)
-        this.cadastroService.gerarPDF(atividade)
+        console.log("cabecalho", cabecalho)
+        this.cadastroService.gerarPDF(atividade, cabecalho)
         .then(response => {
             console.log(response);
             const fileURL = URL.createObjectURL(response);
