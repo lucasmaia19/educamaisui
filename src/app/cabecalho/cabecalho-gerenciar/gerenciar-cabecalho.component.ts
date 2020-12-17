@@ -1,3 +1,5 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { CabecalhoService } from './../cabecalho.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +11,9 @@ export class GerenciarCabecalhoComponent implements OnInit {
 
     productDialog: boolean;
 
-    products: any[];
+    cabecalhoList: any[];
+
+    cabecalho: any;
 
     product: any;
 
@@ -17,9 +21,19 @@ export class GerenciarCabecalhoComponent implements OnInit {
 
     submitted: boolean;
 
-  constructor() { }
+  constructor(
+        private cabecalhoService: CabecalhoService,
+        private sanitizer: DomSanitizer,
+  ) { }
 
   ngOnInit(): void {
+
+    this.listaCabecalhos();
+
+  }
+
+  toLowerCase() {
+
   }
 
   openNew() {
@@ -47,5 +61,21 @@ export class GerenciarCabecalhoComponent implements OnInit {
   saveProduct() {
 
   }
+
+  listaCabecalhos() {
+    this.cabecalhoService.listaCabecalhos()
+    .then(response => {
+        this.cabecalho = response;
+        console.log("resposta", response);
+    })
+}
+
+converteImagemBase64ParaHtml(imagem: any) {
+    let novaImagem;
+    novaImagem = "data:image/jpg;base64," + imagem + "";
+    novaImagem = this.sanitizer.bypassSecurityTrustUrl(novaImagem);
+
+    return novaImagem;
+}
 
 }

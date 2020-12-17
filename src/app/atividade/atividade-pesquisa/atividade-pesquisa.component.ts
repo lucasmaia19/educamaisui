@@ -20,8 +20,6 @@ export class AtividadePesquisaComponent implements OnInit {
 
     items: any;
 
-    // cabecalho = Cabecalho[];
-
     selectedProduct: any;
 
     requestProgress = false;
@@ -37,8 +35,8 @@ export class AtividadePesquisaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listaCabecalhos()
-    this.listaCadastros();
+      this.listaCadastros();
+      this.listaCabecalhos()
 
         this.items = [
             {
