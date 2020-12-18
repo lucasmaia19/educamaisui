@@ -4,13 +4,13 @@
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-            <button pButton pRipple [label]="" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+            <!-- <button pButton pRipple [label]="" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button> -->
         </ng-template>
 
-        <ng-template pTemplate="right">
+        <!-- <ng-template pTemplate="right">
             <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
             <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
-        </ng-template>
+        </ng-template> -->
     </p-toolbar>
 
     <p-table #dt [value]="cabecalho" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
@@ -35,6 +35,7 @@
                 <th pSortableColumn="name">Professora <p-sortIcon field="name"></p-sortIcon></th>
                 <th pSortableColumn="name">Professora <p-sortIcon field="name"></p-sortIcon></th>
                 <th></th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cabecalho>
@@ -46,13 +47,14 @@
                 <td>{{cabecalho.turma}}</td>
                 <td>{{cabecalho.professora}}</td>
                 <td>
-                    <img [src]=converteImagemBase64ParaHtml(cabecalho.logoEscola) style="width: 200px; height: 200px; object-fit: cover;"/>
+                    <img [src]=converteImagemBase64ParaHtml(cabecalho.logoEscola) style="width: 100px; height: 100px; object-fit: cover;"/>
                 </td>
                 <!-- <td><p-rating [ngModel]="cabecalho.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
                 <td><span [class]="'cabecalho-badge status-'">{{cabecalho.inventoryStatus}}</span></td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                    <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(cabecalho)"></button> -->
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(cabecalho.id)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletarCabecalho(cabecalho.id)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -66,53 +68,77 @@
 
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
+
         <div class="p-field">
-            <label for="name">Name</label>
-            <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small>
-        </div>
-        <div class="p-field">
-            <label for="description">Description</label>
-            <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
+            <label for="name">Professora</label>
+            <input type="text" pInputText id="professora" [(ngModel)]="cabecalho.professora" required autofocus />
+            <!-- <small class="p-invalid" *ngIf="submitted && !cabecalho.name">Name is required.</small> -->
         </div>
 
         <div class="p-field">
-            <label class="p-mb-3">Category</label>
-            <div class="p-formgrid p-grid">
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category1">Accessories</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category2">Clothing</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category3">Electronics</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category4">Fitness</label>
-                </div>
+            <label>Data</label>
+            <p-calendar type="text" [locale]="pt" name="data" dateFormat="dd/mm/yy" #data [(ngModel)]="cabecalho.data" required></p-calendar>
+            <!-- <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small> -->
+        </div>
+
+        <div class="p-field">
+            <label for="name">Turma</label>
+            <input type="text" pInputText id="turma" [(ngModel)]="cabecalho.turma" required autofocus />
+            <!-- <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small> -->
+        </div>
+
+        <div class="p-field">
+            <label>Logo da Prefeitura</label>
+            <p-fileUpload mode="advanced" #logoPrefeitura name="logoPrefeitura" url="{{apiUploadUrl}}"
+                [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
+        </div>
+
+        <div class="p-field">
+            <label>Logo da Escola</label>
+            <p-fileUpload mode="advanced" #logoEscola name="logoEscola" url="{{apiUploadUrl}}"
+                [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
+        </div>
+
+        <h3>Dados da Escola</h3>
+
+        <div class="p-field">
+            <label for="name">Nome da Escola</label>
+            <input type="text" pInputText id="nomeEscola" [(ngModel)]="cabecalho.nomeEscola" required autofocus />
+            <!-- <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small> -->
+        </div>
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="name">Logradouro</label>
+                <input type="text" pInputText id="logradouro" [(ngModel)]="cabecalho.logradouro" required autofocus />
+                <!-- <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small> -->
+            </div>
+
+            <div class="p-field p-col">
+                <label for="name">Tel</label>
+                <input type="text" pInputText id="tel" [(ngModel)]="cabecalho.tel" required autofocus />
+                <!-- <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small> -->
             </div>
         </div>
 
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="price">Price</label>
-                <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                <label for="name">Cep</label>
+                <input type="text" pInputText id="cep" [(ngModel)]="cabecalho.cep" required autofocus />
+                <!-- <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small> -->
             </div>
+
             <div class="p-field p-col">
-                <label for="quantity">Quantity</label>
-                <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+                <label for="name">Email</label>
+                <input type="text" pInputText id="email" [(ngModel)]="cabecalho.email" required autofocus />
+                <!-- <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small> -->
             </div>
         </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="salvar()"></button>
     </ng-template>
 </p-dialog>
 

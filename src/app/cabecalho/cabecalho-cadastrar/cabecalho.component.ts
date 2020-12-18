@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { CabecalhoService } from '../cabecalho.service';
 
 export class Cabecalho {
+    id?: number;
     professora?: string;
     turma?: string;
     data?: Date;
