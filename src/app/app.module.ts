@@ -35,6 +35,9 @@ import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
@@ -57,6 +60,7 @@ const routes: Routes = [
     CabecalhoComponent,
     NavbarComponent,
     GerenciarCabecalhoComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +90,8 @@ const routes: Routes = [
     InputNumberModule,
     RadioButtonModule,
     RatingModule,
+    SplitButtonModule,
+    SidebarModule,
 
     RouterModule.forRoot(routes)
   ],

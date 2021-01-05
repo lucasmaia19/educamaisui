@@ -51,7 +51,7 @@ export class CabecalhoComponent implements OnInit {
     // this.listaCabecalhos()
 
       this.pt = {
-        firstDayOfWeek: 1,
+        firstDayOfWeek: 0,
         dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
         dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
@@ -60,7 +60,7 @@ export class CabecalhoComponent implements OnInit {
         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
         today: 'Hoje',
         clear: 'Limpar'
-        };
+        }
 
     this.cabecalho = {
         professora: 'Flavia',
