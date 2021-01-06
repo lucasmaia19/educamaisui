@@ -1,57 +1,58 @@
-<p-fieldset legend="Cadastro de Atividades">
+<div class="card">
+    <p-fieldset legend="Cadastro de Atividades">
 
-    <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
-        <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
-    </div>
+        <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
+            <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+        </div>
 
-    <div class="p-fluid">
-        <form #form (ngSubmit)="uploadComDados()">
+        <div class="p-fluid">
+            <form #form (ngSubmit)="uploadComDados()">
 
-            <div class="p-col-12 p-md-6">
-                <label>Nome</label>
-                <input type="text" pInputText #nome name="nome" [(ngModel)]="atividade.nome">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Enunciado</label>
-                <textarea pInputTextarea name="enunciado" [(ngModel)]="atividade.enunciado"></textarea>
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Faixa Etárias</label>
-                <p-dropdown [options]="faixaEtariaList" placeholder="Selecione" required
-                [showClear]="true" #faixaEtaria name="faixaEtaria" [(ngModel)]="atividade.faixaEtaria"
-                    (onChange)="aprendizagemDesenvolvimentoAlterada()"
-                ></p-dropdown>
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Campo Experiencia</label>
-                <p-dropdown [options]="campoExperienciaList" name="campoExperiencia" placeholder="Selecione" required
-                [showClear]="true" #faixaEtaria name="campoExperiencia" [(ngModel)]="atividade.campoExperiencia"
-                (onChange)="aprendizagemDesenvolvimentoAlterada()"
-                ></p-dropdown>
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Objetivos de aprendizagem e desenvolvimento</label>
-                <p-dropdown [showClear]="true" [options]="aprendizagemDesenvolvimento" name="faixaEtaria" placeholder="Selecione" required></p-dropdown>
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Anexar Imagem</label>
-                <p-fileUpload mode="advanced" #arquivo name="arquivo" url="{{apiUploadUrl}}"
-                    [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
+                <div class="p-col-12 p-md-6">
+                    <label>Nome</label>
+                    <input type="text" pInputText #nome name="nome" [(ngModel)]="atividade.nome">
                 </div>
 
-            <div class="p-col-12 p-md-6">
-                <button pButton type="button" label="Salvar" icon="pi pi-check" (click)="uploadComDados()" [disabled]="requestProgress"></button>
-            </div>
-        </form>
+                <div class="p-col-12 p-md-6">
+                    <label>Enunciado</label>
+                    <textarea pInputTextarea name="enunciado" [(ngModel)]="atividade.enunciado"></textarea>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <label>Faixa Etárias</label>
+                    <p-dropdown [options]="faixaEtariaList" placeholder="Selecione" required
+                    [showClear]="true" #faixaEtaria name="faixaEtaria" [(ngModel)]="atividade.faixaEtaria"
+                        (onChange)="aprendizagemDesenvolvimentoAlterada()"
+                    ></p-dropdown>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <label>Campo Experiencia</label>
+                    <p-dropdown [options]="campoExperienciaList" name="campoExperiencia" placeholder="Selecione" required
+                    [showClear]="true" #faixaEtaria name="campoExperiencia" [(ngModel)]="atividade.campoExperiencia"
+                    (onChange)="aprendizagemDesenvolvimentoAlterada()"
+                    ></p-dropdown>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <label>Objetivos de aprendizagem e desenvolvimento</label>
+                    <p-dropdown [showClear]="true" [options]="aprendizagemDesenvolvimento" name="faixaEtaria" placeholder="Selecione" required></p-dropdown>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <label>Anexar Imagem</label>
+                    <p-fileUpload mode="advanced" #arquivo name="arquivo" url="{{apiUploadUrl}}"
+                        [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
+                    </div>
+
+                <div class="p-col-12 p-md-6">
+                    <button pButton type="button" label="Salvar" icon="pi pi-check" (click)="uploadComDados()" [disabled]="requestProgress"></button>
+                </div>
+            </form>
+        </div>
+    </p-fieldset>
+
+    <div class="p-col-12 p-md-6">
+        <button pButton type="button" label="Voltar" icon="pi pi-check" routerLink="" [disabled]="requestProgress"></button>
     </div>
-</p-fieldset>
-
-<div class="p-col-12 p-md-6">
-    <button pButton type="button" label="Voltar" icon="pi pi-check" routerLink="" [disabled]="requestProgress"></button>
 </div>
-

@@ -13,7 +13,7 @@
         </ng-template> -->
     </p-toolbar>
 
-    <p-table #dt [value]="cabecalho" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+    <p-table #dt [value]="cabecalho" [rows]="10" [paginator]="true" [globalFilterFields]="['professora','country.professora', 'nomeEscola','country.nomeEscola', 'turma','country.turma']"
         [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">

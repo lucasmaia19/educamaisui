@@ -4,7 +4,7 @@
         <p-menubar [model]="items">
             <div>
                 <p-button icon="pi pi-search" class="p-mr-2"></p-button>
-                <input type="text" pInputText placeholder="Pesquisar">
+                <input type="search" pInputText placeholder="Pesquisar" (input)="dv.filter($event.target.value)">
                 <!-- <button type="button" pButton label="Sair" icon="pi pi-power-off" style="margin-left:.25em"></button> -->
             </div>
         </p-menubar>
@@ -14,79 +14,55 @@
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
     </div>
 
-<p-dataView #dv [value]="atividades" [paginator]="true" [rows]="9" filterBy="name" layout="grid">
-    <!--
-    <ng-template pTemplate="header">
-          <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-              <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-                  <i class="pi pi-search"></i>
-                  <input type="search" pInputText placeholder="Pesquisar" (input)="dv.filter($event.target.value)">
-                  <input type="search" pInputText placeholder="Pesquisar">
-              </span>
-              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-          </div>
-      </ng-template>
-      <ng-template let-atividade pTemplate="listItem">
-          <div class="p-col-12">
-            <div class="product-list-item">
-              <div class="product-list-detail">
-                 <i class="pi pi-tag product-category-icon"></i><span class="product-category"></span>
-                 <div class="product-name"> {{atividade.nome}}</div>
-              </div>
-              <img [src]=converteImagemBase64ParaHtml(atividade.arquivo) style="width: 200px; height: 200px; object-fit: cover;"/>
-              </div>
-          </div>
-        </ng-template>
-    -->
+    <p-dataView #dv [value]="atividades" [paginator]="true" [rows]="9" filterBy="nome" layout="grid">
+        <ng-template let-atividade pTemplate="gridItem">
+            <div class="p-col-12 p-md-4">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category"> {{atividade.nome}}</span>
+                        </div>
+                        <!-- <span [class]="'product-badge status-' + atividade.inventoryStatus.toLowerCase()">{{atividade.inventoryStatus}}</span> -->
+                        </div>
+                    <div class="product-grid-item-content">
+                        <img [src]=converteImagemBase64ParaHtml(atividade.arquivo) style="width: 300px; height: 300px; object-fit: cover;"/>
+                        <div class="product-name">{{"Atividade: " + atividade.nome}}</div>
+                        <p-button type="button" icon="pi pi-trash" styleClass="p-button-text" (click)="deletarCadastro(atividade.id)" [disabled]="requestProgress"></p-button>
 
-      <ng-template let-atividade pTemplate="gridItem">
-          <div class="p-col-12 p-md-4">
-              <div class="product-grid-item card">
-                  <div class="product-grid-item-top">
-                      <div>
-                          <i class="pi pi-tag product-category-icon"></i>
-                          <span class="product-category"> {{atividade.nome}}</span>
-                      </div>
-                      <!-- <span [class]="'product-badge status-' + atividade.inventoryStatus.toLowerCase()">{{atividade.inventoryStatus}}</span> -->
+                        <p-button type="button" icon="pi pi-paperclip" styleClass="p-button-text" (click)="op.toggle($event)" [disabled]="requestProgress"></p-button>
+                        <!-- <p-button  id="chartBtn" type="button" [label]="selectedProduct ? selectedProduct.name : 'Select a Product'" icon="pi pi-search" (click)="op.toggle($event)"></p-button> -->
+
+                        <p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '450px'}"  [appendTo]="'body'">
+                            <ng-template pTemplate>
+                                <div class="p-field p-col-6 p-md-12">
+                                    <th>Escoha seu cabeçalho</th>
+                                </div>
+                                <p-table [value]="cabecalho" selectionMode="single" [(selection)]="selectedProduct"
+                                    (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="3">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>Nome da Escola</th>
+                                            <th>Turma</th>
+                                            <th>Gerar PDF</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-cabecalho>
+                                        <tr [pSelectableRow]="rowData">
+                                            <td>{{cabecalho.nomeEscola}}</td>
+                                            <td>{{cabecalho.turma}}</td>
+                                            <td><p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade, cabecalho)" [disabled]="requestProgress"></p-button></td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </ng-template>
+                        </p-overlayPanel>
+
                     </div>
-                  <div class="product-grid-item-content">
-                      <img [src]=converteImagemBase64ParaHtml(atividade.arquivo) style="width: 300px; height: 300px; object-fit: cover;"/>
-                      <div class="product-name">{{"Atividade: " + atividade.nome}}</div>
-                      <p-button type="button" icon="pi pi-trash" styleClass="p-button-text" (click)="deletarCadastro(atividade.id)" [disabled]="requestProgress"></p-button>
-
-                      <p-button type="button" icon="pi pi-paperclip" styleClass="p-button-text" (click)="op.toggle($event)" [disabled]="requestProgress"></p-button>
-                      <!-- <p-button  id="chartBtn" type="button" [label]="selectedProduct ? selectedProduct.name : 'Select a Product'" icon="pi pi-search" (click)="op.toggle($event)"></p-button> -->
-
-                      <p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '450px'}"  [appendTo]="'body'">
-                          <ng-template pTemplate>
-                            <div class="p-field p-col-6 p-md-12">
-                                <th>Escoha seu cabeçalho</th>
-                            </div>
-                            <p-table [value]="cabecalho" selectionMode="single" [(selection)]="selectedProduct"
-                                (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="3">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th>Nome da Escola</th>
-                                        <th>Turma</th>
-                                        <th>Gerar PDF</th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="body" let-rowData let-cabecalho>
-                                    <tr [pSelectableRow]="rowData">
-                                        <td>{{cabecalho.nomeEscola}}</td>
-                                        <td>{{cabecalho.turma}}</td>
-                                        <td><p-button type="button" icon="pi pi-file" styleClass="p-button-text" (click)="gerarPDF(atividade, cabecalho)" [disabled]="requestProgress"></p-button></td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </ng-template>
-                    </p-overlayPanel>
-
-                  </div>
-                  <div class="product-grid-item-bottom">
-                  </div>
-              </div>
-          </div>
-      </ng-template>
-  </p-dataView>
+                    <div class="product-grid-item-bottom">
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
 </div>
