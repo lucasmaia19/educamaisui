@@ -175,13 +175,9 @@ export class AtividadeCadastroComponent implements OnInit {
 
             this.listaCadastros();
             this.requestProgress = false;
+
             this.clearForm();
-
-
         })
-            // this.router.navigate(['']);
-            // this.pesquisaComponent.listaCadastros()
-            // this.cadastroService.listaCadastros();
     }
 
     clearForm() {
@@ -190,11 +186,7 @@ export class AtividadeCadastroComponent implements OnInit {
               enunciado: '',
               faixaEtaria: '',
               campoExperiencia: '',
-              aprendizagemDesenvolvimento: ''
+              aprendizagemDesenvolvimento: '',
              };
         }
-
- // this.atividade = { nome: 'Colorir',
-            //  enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
-
 }
