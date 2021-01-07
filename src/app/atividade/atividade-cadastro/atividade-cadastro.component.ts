@@ -133,7 +133,6 @@ export class AtividadeCadastroComponent implements OnInit {
     }
 
     listaCadastros() {
-        console.log("teste")
         this.cadastroService.listaCadastros()
         .then(response => {
             this.atividades = response;
@@ -176,17 +175,19 @@ export class AtividadeCadastroComponent implements OnInit {
             this.listaCadastros();
             this.requestProgress = false;
 
-            this.clearForm();
+            location.reload()
+
+            // this.clearForm();
         })
     }
 
-    clearForm() {
-        this.atividade = {
-              nome: '',
-              enunciado: '',
-              faixaEtaria: '',
-              campoExperiencia: '',
-              aprendizagemDesenvolvimento: '',
-             };
-        }
+    // clearForm() {
+    //     this.atividade = {
+    //           nome: '',
+    //           enunciado: '',
+    //           faixaEtaria: '',
+    //           campoExperiencia: '',
+    //           aprendizagemDesenvolvimento: '',
+    //          };
+    //     }
 }

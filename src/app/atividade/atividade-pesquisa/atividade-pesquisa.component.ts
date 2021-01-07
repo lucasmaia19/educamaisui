@@ -85,7 +85,9 @@ export class AtividadePesquisaComponent implements OnInit {
         .then(response => {
             this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
             console.log("Id " + id + " excluido" )
+            location.reload()
             this.listaCadastros
+
             });
         }
     })
