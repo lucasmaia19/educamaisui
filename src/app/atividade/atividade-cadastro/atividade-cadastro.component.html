@@ -20,7 +20,7 @@
 
                 <div class="p-col-12 p-md-6">
                     <label>Faixa Etárias</label>
-                    <p-dropdown [options]="faixaEtariaList" placeholder="Selecione" required
+                    <p-dropdown [options]="faixaEtariaList" placeholder="Selecione"
                     [showClear]="true" #faixaEtaria name="faixaEtaria" [(ngModel)]="atividade.faixaEtaria"
                         (onChange)="aprendizagemDesenvolvimentoAlterada()"
                     ></p-dropdown>
@@ -28,7 +28,7 @@
 
                 <div class="p-col-12 p-md-6">
                     <label>Campo Experiencia</label>
-                    <p-dropdown [options]="campoExperienciaList" name="campoExperiencia" placeholder="Selecione" required
+                    <p-dropdown [options]="campoExperienciaList" name="campoExperiencia" placeholder="Selecione"
                     [showClear]="true" #faixaEtaria name="campoExperiencia" [(ngModel)]="atividade.campoExperiencia"
                     (onChange)="aprendizagemDesenvolvimentoAlterada()"
                     ></p-dropdown>
@@ -36,7 +36,7 @@
 
                 <div class="p-col-12 p-md-6">
                     <label>Objetivos de aprendizagem e desenvolvimento</label>
-                    <p-dropdown [showClear]="true" [options]="aprendizagemDesenvolvimento" name="faixaEtaria" placeholder="Selecione" required></p-dropdown>
+                    <p-dropdown [showClear]="true" [options]="aprendizagemDesenvolvimento" [(ngModel)]="atividade.aprendizagemDesenvolvimento" name="objetivosAprendizagem" placeholder="Selecione" ></p-dropdown>
                 </div>
 
                 <div class="p-col-12 p-md-6">

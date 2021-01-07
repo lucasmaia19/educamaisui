@@ -173,19 +173,29 @@ export class GerenciarCabecalhoComponent implements OnInit {
         return novaImagem;
     }
 
+    // deletarCabecalho(id: number) {
+    //     this.confirmationService.confirm({
+    //     message: 'Tem certeza que deseja excluir',
+    //     accept: () => {
+    //     this.cabecalhoService.deletarCabecalho(id)
+    //         .then(response => {
+    //             this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
+    //             console.log("Id " + id + " excluido" )
+    //             this.listaCabecalhos
+    //             });
+    //         }
+    //     })
+    // }
+
     deletarCabecalho(id: number) {
-        this.confirmationService.confirm({
-        message: 'Tem certeza que deseja excluir',
-        accept: () => {
+
         this.cabecalhoService.deletarCabecalho(id)
-            .then(response => {
-                this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
-                console.log("Id " + id + " excluido" )
-                this.listaCabecalhos
-                });
-            }
-        })
-    }
+        .then(response => {
+            this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
+            console.log("Id " + id + " excluido" )
+            this.listaCabecalhos
+            });
+        }
 
     editProduct(id: number) {
         this.productDialog = true;

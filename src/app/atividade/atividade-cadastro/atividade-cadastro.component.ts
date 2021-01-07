@@ -10,6 +10,7 @@ export class Atividade {
     enunciado?: string;
     faixaEtaria?: string;
     campoExperiencia?: string;
+    aprendizagemDesenvolvimento?: string;
     arquivo?: File;
 }
 
@@ -165,12 +166,35 @@ export class AtividadeCadastroComponent implements OnInit {
             .toPromise()
             .then(response => {
             this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
+
             console.log("enunciado:", this.atividade.enunciado)
+            console.log("nome", this.atividade.nome)
+            console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
+            console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
+            console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
+
             this.listaCadastros();
             this.requestProgress = false;
+            this.clearForm();
+
+
         })
             // this.router.navigate(['']);
             // this.pesquisaComponent.listaCadastros()
             // this.cadastroService.listaCadastros();
     }
+
+    clearForm() {
+        this.atividade = {
+              nome: '',
+              enunciado: '',
+              faixaEtaria: '',
+              campoExperiencia: '',
+              aprendizagemDesenvolvimento: ''
+             };
+        }
+
+ // this.atividade = { nome: 'Colorir',
+            //  enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
+
 }
