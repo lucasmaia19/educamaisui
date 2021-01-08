@@ -28,8 +28,8 @@ export class Cabecalho {
 })
 export class CabecalhoComponent implements OnInit {
 
-  apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
-  apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
+  apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+  apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
 
   cabecalho = new Cabecalho();
   @ViewChild('logoPrefeitura') logoPrefeitura: FileUpload;

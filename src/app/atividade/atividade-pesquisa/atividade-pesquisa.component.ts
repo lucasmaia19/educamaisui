@@ -75,6 +75,8 @@ export class AtividadePesquisaComponent implements OnInit {
             console.log(this.atividades);
             // this.router.navigate([''])
         })
+        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR ATIVIDADES'}))
+            .finally(() => this.requestProgress = false);
     }
 
     deletarCadastro(id: number) {
@@ -130,6 +132,8 @@ export class AtividadePesquisaComponent implements OnInit {
             this.cabecalho = response;
             console.log("resposta", response);
         })
+        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR CABEÇALHOS'}))
+            .finally(() => this.requestProgress = false);
     }
 
     teste() {

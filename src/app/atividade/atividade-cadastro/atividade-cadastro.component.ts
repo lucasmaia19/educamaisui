@@ -21,8 +21,8 @@ export class Atividade {
 })
 export class AtividadeCadastroComponent implements OnInit {
 
-    apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
-    apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
+    apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+    apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
 
     atividade = new Atividade();
     @ViewChild('arquivo') arquivo: FileUpload;
@@ -44,8 +44,8 @@ export class AtividadeCadastroComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.atividade = { nome: 'Colorir',
-             enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
+        // this.atividade = { nome: 'Colorir',
+            //  enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
 
         this.consultarListaFaixaEtaria();
         this.consultarListaCampoExperiencia();
@@ -139,6 +139,8 @@ export class AtividadeCadastroComponent implements OnInit {
             console.log(this.atividades);
             // this.router.navigate([''])
         })
+        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR'}))
+            .finally(() => this.requestProgress = false);
     }
 
     uploadComDados(): void {
@@ -164,30 +166,34 @@ export class AtividadeCadastroComponent implements OnInit {
         this.http.post(this.apiuploadComDadosUrl, formData)
             .toPromise()
             .then(response => {
-            this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
 
-            console.log("enunciado:", this.atividade.enunciado)
-            console.log("nome", this.atividade.nome)
-            console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
-            console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
-            console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
+            // this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
+                this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
 
-            this.listaCadastros();
-            this.requestProgress = false;
+                console.log("enunciado:", this.atividade.enunciado)
+                console.log("nome", this.atividade.nome)
+                console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
+                console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
+                console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
 
-            location.reload()
+                this.listaCadastros();
+                this.requestProgress = false;
 
-            // this.clearForm();
-        })
+                // location.reload()
+
+                this.clearForm();
+            })
+            .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CADASTRAR'}))
+            .finally(() => this.requestProgress = false);
     }
 
-    // clearForm() {
-    //     this.atividade = {
-    //           nome: '',
-    //           enunciado: '',
-    //           faixaEtaria: '',
-    //           campoExperiencia: '',
-    //           aprendizagemDesenvolvimento: '',
-    //          };
-    //     }
+    clearForm() {
+        this.atividade = {
+              nome: '',
+              enunciado: '',
+              faixaEtaria: '',
+              campoExperiencia: '',
+              aprendizagemDesenvolvimento: '',
+             };
+        }
 }
