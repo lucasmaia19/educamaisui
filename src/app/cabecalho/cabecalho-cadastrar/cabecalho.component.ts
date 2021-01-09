@@ -62,17 +62,17 @@ export class CabecalhoComponent implements OnInit {
         clear: 'Limpar'
         }
 
-    this.cabecalho = {
-        professora: 'Flavia',
-        aluno: 'Lucas',
-        turma: 'Turma B',
-        nomeEscola: 'IFTM',
-        logradouro: 'Fazenda capim branco',
-        tel: '32262292',
-        cep: '38401591',
-        data: new Date(),
-        email: 'lucasmaia@gmail.com',
-        };
+    // this.cabecalho = {
+    //     professora: 'Flavia',
+    //     aluno: 'Lucas',
+    //     turma: 'Turma B',
+    //     nomeEscola: 'IFTM',
+    //     logradouro: 'Fazenda capim branco',
+    //     tel: '32262292',
+    //     cep: '38401591',
+    //     data: new Date(),
+    //     email: 'lucasmaia@gmail.com',
+    //     };
     }
 
     uploadComDadosCabecalho(): void {
