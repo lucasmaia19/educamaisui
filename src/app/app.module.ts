@@ -38,6 +38,9 @@ import { RatingModule } from 'primeng/rating';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenuComponent } from './menu/menu.component';
+import { TesteComponent } from './teste/teste.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 const routes: Routes = [
     { path: '', component: AtividadePesquisaComponent },
@@ -48,7 +51,9 @@ const routes: Routes = [
 
     { path: 'ativade/:id', component: AtividadeCadastroComponent },
 
-    { path: 'gerenciar-cabecalho', component: GerenciarCabecalhoComponent }
+    { path: 'gerenciar-cabecalho', component: GerenciarCabecalhoComponent },
+
+    { path: 'teste', component: TesteComponent }
 
   ]
 
@@ -61,6 +66,7 @@ const routes: Routes = [
     NavbarComponent,
     GerenciarCabecalhoComponent,
     MenuComponent,
+    TesteComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +98,7 @@ const routes: Routes = [
     RatingModule,
     SplitButtonModule,
     SidebarModule,
+    MultiSelectModule,
 
     RouterModule.forRoot(routes)
   ],

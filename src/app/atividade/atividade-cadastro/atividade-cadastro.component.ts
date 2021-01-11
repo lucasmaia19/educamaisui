@@ -21,8 +21,11 @@ export class Atividade {
 })
 export class AtividadeCadastroComponent implements OnInit {
 
-    apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
-    apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+    // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+    // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+
+    apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
+    apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
 
     atividade = new Atividade();
     @ViewChild('arquivo') arquivo: FileUpload;
