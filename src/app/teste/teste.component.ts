@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { CadastroService } from './../atividade/cadastro-.service';
 import { Component, OnInit } from '@angular/core';
+import { SelectItem } from 'primeng/api';
 
 export class Multselect {
     id?: string;
@@ -40,13 +41,42 @@ export class TesteComponent implements OnInit {
 
   teste() {
 
-      const formData = new FormData();
+      //const dados = this.multselect.nome
+      //console.log("dados", dados)
 
-      this.http.post(this.apiuploadComDadosUrl, formData)
-      .toPromise()
-      .then(response => {
-                console.log("dados selecionados", this.multselect.nome)
-                console.log("response: ", response)
-    })
-  }
+      const formData = new FormData();
+      const dados = JSON.stringify(this.multselect.nome);
+      console.log("dados", dados)
+
+      const multSelectList = new Array<any>();
+      Object.keys(dados).forEach(k => {
+
+        //console.warn('for');
+        //console.log('k', k);
+        //console.log('dados[k]', dados[k]);
+        //console.log('dados[k]', JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
+
+        multSelectList.push(JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
+
+        //JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']});
+        // formData.append(k, JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
+
+        //console.log(dados[k]['nome']);
+        //console.log(dados[k]['id']);
+
+        // formData.append(k, dados[k]);
+
+
+        // formData.append('multSelect', multSelectList.toString());
+        console.log("formData", formData)
+        console.log("multSelectList", multSelectList)
+    });
+
+        this.http.post(this.apiuploadComDadosUrl, formData)
+        .toPromise()
+        .then(response => {
+            console.log("dados selecionados", dados)
+            console.log("response: ", response)
+        })
+    }
 }
