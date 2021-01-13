@@ -15,7 +15,7 @@ export class Multselect {
 })
 export class TesteComponent implements OnInit {
 
-    apiuploadComDadosUrl = 'http://localhost:8080/atividade/teste';
+    apiuploadComDadosUrl = 'http://localhost:8080/atividade/teste/';
 
     multselect = new Multselect();
 
@@ -41,22 +41,15 @@ export class TesteComponent implements OnInit {
 
   teste() {
 
-      //const dados = this.multselect.nome
-      //console.log("dados", dados)
-
-      const formData = new FormData();
-      const dados = JSON.stringify(this.multselect.nome);
-      console.log("dados", dados)
-
-      const multSelectList = new Array<any>();
-      Object.keys(dados).forEach(k => {
+      // const multSelectList = new Array<any>();
+      // Object.keys(dados).forEach(k => {
 
         //console.warn('for');
         //console.log('k', k);
         //console.log('dados[k]', dados[k]);
         //console.log('dados[k]', JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
 
-        multSelectList.push(JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
+        // multSelectList.push(JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
 
         //JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']});
         // formData.append(k, JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
@@ -68,9 +61,16 @@ export class TesteComponent implements OnInit {
 
 
         // formData.append('multSelect', multSelectList.toString());
-        console.log("formData", formData)
-        console.log("multSelectList", multSelectList)
-    });
+        // console.log("formData", formData)
+        // console.log("multSelectList", multSelectList)
+    // });
+
+        //const dados = this.multselect.nome
+        //console.log("dados", dados)
+
+        const formData = new FormData();
+        const dados = JSON.stringify(this.multselect);
+        formData.append('opcoes', dados);
 
         this.http.post(this.apiuploadComDadosUrl, formData)
         .toPromise()
