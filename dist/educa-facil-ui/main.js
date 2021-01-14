@@ -12,6 +12,109 @@ module.exports = __webpack_require__(/*! C:\Workspace\projetoeducamais\poc-educa
 
 /***/ }),
 
+/***/ "179K":
+/*!******************************************!*\
+  !*** ./src/app/teste/teste.component.ts ***!
+  \******************************************/
+/*! exports provided: Multselect, TesteComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Multselect", function() { return Multselect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TesteComponent", function() { return TesteComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _atividade_cadastro_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../atividade/cadastro-.service */ "DhbV");
+/* harmony import */ var primeng_multiselect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primeng/multiselect */ "lVkt");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var primeng_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primeng/button */ "jIHw");
+
+
+
+
+
+
+
+class Multselect {
+}
+class TesteComponent {
+    constructor(http, cadastroService) {
+        this.http = http;
+        this.cadastroService = cadastroService;
+        this.apiuploadComDadosUrl = 'http://localhost:8080/atividade/teste/';
+        this.multselect = new Multselect();
+        this.cities = [
+            { nome: "New York", id: "NY" },
+            { nome: "Rome", id: "RM" },
+            { nome: "London", id: "LDN" },
+            { nome: "Istanbul", id: "IST" },
+            { nome: "Paris", id: "PRS" }
+        ];
+    }
+    ngOnInit() {
+        console.log(this.cities);
+    }
+    teste() {
+        // const multSelectList = new Array<any>();
+        // Object.keys(dados).forEach(k => {
+        //console.warn('for');
+        //console.log('k', k);
+        //console.log('dados[k]', dados[k]);
+        //console.log('dados[k]', JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
+        // multSelectList.push(JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
+        //JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']});
+        // formData.append(k, JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
+        //console.log(dados[k]['nome']);
+        //console.log(dados[k]['id']);
+        // formData.append(k, dados[k]);
+        // formData.append('multSelect', multSelectList.toString());
+        // console.log("formData", formData)
+        // console.log("multSelectList", multSelectList)
+        // });
+        //const dados = this.multselect.nome
+        //console.log("dados", dados)
+        const formData = new FormData();
+        const dados = JSON.stringify(this.multselect);
+        formData.append('opcoes', dados);
+        // formData.append('file', dados);
+        this.http.post(this.apiuploadComDadosUrl, formData)
+            .toPromise()
+            .then(response => {
+            console.log("dados selecionados", dados);
+            console.log("response: ", response);
+        });
+    }
+}
+TesteComponent.ɵfac = function TesteComponent_Factory(t) { return new (t || TesteComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_atividade_cadastro_service__WEBPACK_IMPORTED_MODULE_2__["CadastroService"])); };
+TesteComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TesteComponent, selectors: [["app-teste"]], decls: 5, vars: 2, consts: [["defaultLabel", "Select a City", "optionLabel", "nome", "display", "chip", 3, "options", "ngModel", "ngModelChange"], [1, "p-col-12", "p-md-6"], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "click"]], template: function TesteComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h5");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Chips");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "p-multiSelect", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function TesteComponent_Template_p_multiSelect_ngModelChange_2_listener($event) { return ctx.multselect.nome = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "button", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function TesteComponent_Template_button_click_4_listener() { return ctx.teste(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.cities)("ngModel", ctx.multselect.nome);
+    } }, directives: [primeng_multiselect__WEBPACK_IMPORTED_MODULE_3__["MultiSelect"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgModel"], primeng_button__WEBPACK_IMPORTED_MODULE_5__["ButtonDirective"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ0ZXN0ZS5jb21wb25lbnQuY3NzIn0= */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](TesteComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'app-teste',
+                templateUrl: './teste.component.html',
+                styleUrls: ['./teste.component.css']
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }, { type: _atividade_cadastro_service__WEBPACK_IMPORTED_MODULE_2__["CadastroService"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "AytR":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -60,37 +163,44 @@ class CadastroService {
         this.http = http;
     }
     consultarListaFaixaEtaria() {
-        return this.http.get('https://educa-mais-api.herokuapp.com/faixa-etaria')
+        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/faixa-etaria')
+        return this.http.get('http://localhost:8080/atividade/faixa-etaria')
             .toPromise()
             .then(response => { return response; });
     }
     consultarListaCampoExperiencia() {
-        return this.http.get('https://educa-mais-api.herokuapp.com/campo-experiencia')
+        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/campo-experiencia')
+        return this.http.get('http://localhost:8080/atividade/campo-experiencia')
             .toPromise()
             .then(response => { return response; });
     }
     consultarListaFaixaEtariaFiltroId(id) {
-        return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
+        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
+        return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
             .toPromise()
             .then(response => { return response; });
     }
     consultarCampoExperienciaFiltroId(id) {
-        return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
+        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
+        return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
             .toPromise()
             .then(response => { return response; });
     }
     consultarCeFeFiltroId(id, idd) {
-        return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
+        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
+        return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
             .toPromise()
             .then(response => { return response; });
     }
     listaCadastros() {
-        return this.http.get('https://educa-mais-api.herokuapp.com/atividade/')
+        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/')
+        return this.http.get('http://localhost:8080/atividade/')
             .toPromise()
             .then(data => { return data; });
     }
     deletarCadastro(id) {
-        return this.http.delete(`https://educa-mais-api.herokuapp.com/atividade/${id}`)
+        return this.http.delete(`http://localhost:8080/atividade/${id}`)
+            // return this.http.delete(`https://educa-mais-api.herokuapp.com/atividade/${id}`)
             .toPromise()
             .then(response => { return response; });
     }
@@ -98,7 +208,8 @@ class CadastroService {
         console.log("gerarPDF service");
         console.log("atividade.id", atividade.id);
         console.log("cabecalho.id", cabecalho.id);
-        const url = `https://educa-mais-api.herokuapp.com/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+        // const url = `https://educa-mais-api.herokuapp.com/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+        const url = `http://localhost:8080/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
         console.log(url);
         return this.http.get(url, { responseType: 'blob' })
             .toPromise()
@@ -306,7 +417,9 @@ class AtividadePesquisaComponent {
             this.atividades = response;
             console.log(this.atividades);
             // this.router.navigate([''])
-        });
+        })
+            .catch(erro => this.messageService.add({ severity: 'error', summary: 'ERRO AO LISTAR ATIVIDADES' }))
+            .finally(() => this.requestProgress = false);
     }
     deletarCadastro(id) {
         this.confirmationService.confirm({
@@ -352,7 +465,9 @@ class AtividadePesquisaComponent {
             .then(response => {
             this.cabecalho = response;
             console.log("resposta", response);
-        });
+        })
+            .catch(erro => this.messageService.add({ severity: 'error', summary: 'ERRO AO LISTAR CABEÇALHOS' }))
+            .finally(() => this.requestProgress = false);
     }
     teste() {
         console.log("click");
@@ -680,8 +795,10 @@ class GerenciarCabecalhoComponent {
         this.messageService = messageService;
         this.confirmationService = confirmationService;
         this.http = http;
-        this.apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
-        this.apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+        // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+        // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+        this.apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
+        this.apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
     }
     ngOnInit() {
         this.pt = {
@@ -1329,6 +1446,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_splitbutton__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! primeng/splitbutton */ "Wq6t");
 /* harmony import */ var primeng_sidebar__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! primeng/sidebar */ "jLSX");
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./menu/menu.component */ "TGkX");
+/* harmony import */ var _teste_teste_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./teste/teste.component */ "179K");
+/* harmony import */ var primeng_multiselect__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! primeng/multiselect */ "lVkt");
+
+
 
 
 
@@ -1373,7 +1494,8 @@ const routes = [
     { path: 'atividade', component: _atividade_atividade_cadastro_atividade_cadastro_component__WEBPACK_IMPORTED_MODULE_5__["AtividadeCadastroComponent"] },
     { path: 'cabecalho', component: _cabecalho_cabecalho_cadastrar_cabecalho_component__WEBPACK_IMPORTED_MODULE_0__["CabecalhoComponent"] },
     { path: 'ativade/:id', component: _atividade_atividade_cadastro_atividade_cadastro_component__WEBPACK_IMPORTED_MODULE_5__["AtividadeCadastroComponent"] },
-    { path: 'gerenciar-cabecalho', component: _cabecalho_cabecalho_gerenciar_gerenciar_cabecalho_component__WEBPACK_IMPORTED_MODULE_6__["GerenciarCabecalhoComponent"] }
+    { path: 'gerenciar-cabecalho', component: _cabecalho_cabecalho_gerenciar_gerenciar_cabecalho_component__WEBPACK_IMPORTED_MODULE_6__["GerenciarCabecalhoComponent"] },
+    { path: 'teste', component: _teste_teste_component__WEBPACK_IMPORTED_MODULE_37__["TesteComponent"] }
 ];
 class AppModule {
 }
@@ -1407,6 +1529,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector
             primeng_rating__WEBPACK_IMPORTED_MODULE_33__["RatingModule"],
             primeng_splitbutton__WEBPACK_IMPORTED_MODULE_34__["SplitButtonModule"],
             primeng_sidebar__WEBPACK_IMPORTED_MODULE_35__["SidebarModule"],
+            primeng_multiselect__WEBPACK_IMPORTED_MODULE_38__["MultiSelectModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"].forRoot(routes)
         ]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
@@ -1415,7 +1538,8 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector
         _cabecalho_cabecalho_cadastrar_cabecalho_component__WEBPACK_IMPORTED_MODULE_0__["CabecalhoComponent"],
         _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"],
         _cabecalho_cabecalho_gerenciar_gerenciar_cabecalho_component__WEBPACK_IMPORTED_MODULE_6__["GerenciarCabecalhoComponent"],
-        _menu_menu_component__WEBPACK_IMPORTED_MODULE_36__["MenuComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["BrowserModule"],
+        _menu_menu_component__WEBPACK_IMPORTED_MODULE_36__["MenuComponent"],
+        _teste_teste_component__WEBPACK_IMPORTED_MODULE_37__["TesteComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["BrowserModule"],
         _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
         _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
@@ -1442,7 +1566,8 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector
         primeng_radiobutton__WEBPACK_IMPORTED_MODULE_32__["RadioButtonModule"],
         primeng_rating__WEBPACK_IMPORTED_MODULE_33__["RatingModule"],
         primeng_splitbutton__WEBPACK_IMPORTED_MODULE_34__["SplitButtonModule"],
-        primeng_sidebar__WEBPACK_IMPORTED_MODULE_35__["SidebarModule"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"]] }); })();
+        primeng_sidebar__WEBPACK_IMPORTED_MODULE_35__["SidebarModule"],
+        primeng_multiselect__WEBPACK_IMPORTED_MODULE_38__["MultiSelectModule"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["NgModule"],
         args: [{
@@ -1454,6 +1579,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector
                     _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"],
                     _cabecalho_cabecalho_gerenciar_gerenciar_cabecalho_component__WEBPACK_IMPORTED_MODULE_6__["GerenciarCabecalhoComponent"],
                     _menu_menu_component__WEBPACK_IMPORTED_MODULE_36__["MenuComponent"],
+                    _teste_teste_component__WEBPACK_IMPORTED_MODULE_37__["TesteComponent"],
                 ],
                 imports: [
                     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["BrowserModule"],
@@ -1484,6 +1610,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector
                     primeng_rating__WEBPACK_IMPORTED_MODULE_33__["RatingModule"],
                     primeng_splitbutton__WEBPACK_IMPORTED_MODULE_34__["SplitButtonModule"],
                     primeng_sidebar__WEBPACK_IMPORTED_MODULE_35__["SidebarModule"],
+                    primeng_multiselect__WEBPACK_IMPORTED_MODULE_38__["MultiSelectModule"],
                     _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"].forRoot(routes)
                 ],
                 providers: [primeng_api__WEBPACK_IMPORTED_MODULE_1__["MessageService"], primeng_api__WEBPACK_IMPORTED_MODULE_1__["ConfirmationService"]],
@@ -1544,8 +1671,10 @@ class CabecalhoComponent {
         this.cabecalhoService = cabecalhoService;
         this.messageService = messageService;
         this.router = router;
-        this.apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
-        this.apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+        //   apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+        //   apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+        this.apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
+        this.apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
         this.cabecalho = new Cabecalho();
         this.requestProgress = false;
     }
@@ -1562,17 +1691,17 @@ class CabecalhoComponent {
             today: 'Hoje',
             clear: 'Limpar'
         };
-        this.cabecalho = {
-            professora: 'Flavia',
-            aluno: 'Lucas',
-            turma: 'Turma B',
-            nomeEscola: 'IFTM',
-            logradouro: 'Fazenda capim branco',
-            tel: '32262292',
-            cep: '38401591',
-            data: new Date(),
-            email: 'lucasmaia@gmail.com',
-        };
+        // this.cabecalho = {
+        //     professora: 'Flavia',
+        //     aluno: 'Lucas',
+        //     turma: 'Turma B',
+        //     nomeEscola: 'IFTM',
+        //     logradouro: 'Fazenda capim branco',
+        //     tel: '32262292',
+        //     cep: '38401591',
+        //     data: new Date(),
+        //     email: 'lucasmaia@gmail.com',
+        //     };
     }
     uploadComDadosCabecalho() {
         if (this.requestProgress) {
@@ -1799,12 +1928,13 @@ CabecalhoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
 /*!******************************************************************************!*\
   !*** ./src/app/atividade/atividade-cadastro/atividade-cadastro.component.ts ***!
   \******************************************************************************/
-/*! exports provided: Atividade, AtividadeCadastroComponent */
+/*! exports provided: Atividade, Multselect, AtividadeCadastroComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Atividade", function() { return Atividade; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Multselect", function() { return Multselect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AtividadeCadastroComponent", function() { return AtividadeCadastroComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
@@ -1817,8 +1947,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primeng/inputtext */ "7kUa");
 /* harmony import */ var primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primeng/inputtextarea */ "zFJ7");
 /* harmony import */ var primeng_dropdown__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primeng/dropdown */ "arFO");
-/* harmony import */ var primeng_fileupload__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primeng/fileupload */ "NCSE");
-/* harmony import */ var primeng_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primeng/button */ "jIHw");
+/* harmony import */ var primeng_multiselect__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primeng/multiselect */ "lVkt");
+/* harmony import */ var primeng_fileupload__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primeng/fileupload */ "NCSE");
+/* harmony import */ var primeng_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primeng/button */ "jIHw");
+
 
 
 
@@ -1837,23 +1969,35 @@ const _c0 = ["arquivo"];
 const _c1 = function () { return { "height": "6px" }; };
 class Atividade {
 }
+class Multselect {
+}
 class AtividadeCadastroComponent {
     constructor(http, messageService, router, cadastroService) {
         this.http = http;
         this.messageService = messageService;
         this.router = router;
         this.cadastroService = cadastroService;
-        this.apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
-        this.apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+        // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+        // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+        this.apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
+        this.apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
         this.atividade = new Atividade();
+        this.multselect = new Multselect();
         this.requestProgress = false;
         this.faixaEtariaList = new Array();
         this.campoExperienciaList = new Array();
         this.aprendizagemDesenvolvimento = new Array();
+        this.cities = [
+            { nome: "New York", id: "NY" },
+            { nome: "Rome", id: "RM" },
+            { nome: "London", id: "LDN" },
+            { nome: "Istanbul", id: "IST" },
+            { nome: "Paris", id: "PRS" }
+        ];
     }
     ngOnInit() {
-        // this.atividade = { nome: 'Colorir',
-        //  enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
+        this.atividade = { nome: 'Colorir',
+            enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
         this.consultarListaFaixaEtaria();
         this.consultarListaCampoExperiencia();
     }
@@ -1925,7 +2069,9 @@ class AtividadeCadastroComponent {
             this.atividades = response;
             console.log(this.atividades);
             // this.router.navigate([''])
-        });
+        })
+            .catch(erro => this.messageService.add({ severity: 'error', summary: 'ERRO AO LISTAR' }))
+            .finally(() => this.requestProgress = false);
     }
     uploadComDados() {
         if (this.requestProgress) {
@@ -1933,6 +2079,9 @@ class AtividadeCadastroComponent {
         }
         this.requestProgress = true;
         const formData = new FormData();
+        const dadosCities = JSON.stringify(this.multselect);
+        formData.append('opcoes', dadosCities);
+        // formData.append('file', dadosCities);
         const dados = this.atividade;
         Object.keys(dados).forEach(k => {
             formData.append(k, dados[k]);
@@ -1946,16 +2095,19 @@ class AtividadeCadastroComponent {
             .then(response => {
             // this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
             this.messageService.add({ severity: 'success', summary: 'Cadastro adicionado com sucesso!' });
-            console.log("enunciado:", this.atividade.enunciado);
-            console.log("nome", this.atividade.nome);
-            console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria);
-            console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia);
-            console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento);
+            // console.log("enunciado:", this.atividade.enunciado)
+            // console.log("nome", this.atividade.nome)
+            // console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
+            // console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
+            // console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
+            console.log("dadosCities", dadosCities);
             this.listaCadastros();
             this.requestProgress = false;
             // location.reload()
             this.clearForm();
-        });
+        })
+            .catch(erro => this.messageService.add({ severity: 'error', summary: 'ERRO AO CADASTRAR' }))
+            .finally(() => this.requestProgress = false);
     }
     clearForm() {
         this.atividade = {
@@ -1973,7 +2125,7 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.arquivo = _t.first);
-    } }, decls: 39, vars: 19, consts: [[1, "card"], ["legend", "Cadastro de Atividades"], [1, "p-field", "p-col-6", "p-md-12", 3, "hidden"], ["mode", "indeterminate"], [1, "p-fluid"], [3, "ngSubmit"], ["form", ""], [1, "p-col-12", "p-md-6"], ["type", "text", "pInputText", "", "name", "nome", 3, "ngModel", "ngModelChange"], ["nome", ""], ["pInputTextarea", "", "name", "enunciado", 3, "ngModel", "ngModelChange"], ["placeholder", "Selecione", "name", "faixaEtaria", 3, "options", "showClear", "ngModel", "ngModelChange", "onChange"], ["faixaEtaria", ""], ["name", "campoExperiencia", "placeholder", "Selecione", "name", "campoExperiencia", 3, "options", "showClear", "ngModel", "ngModelChange", "onChange"], ["name", "objetivosAprendizagem", "placeholder", "Selecione", 3, "showClear", "options", "ngModel", "ngModelChange"], ["mode", "advanced", "name", "arquivo", "chooseLabel", "Adicionar", "cancelLabel", "Cancelar", 3, "url", "showUploadButton"], ["arquivo", ""], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "disabled", "click"], ["pButton", "", "type", "button", "label", "Voltar", "icon", "pi pi-check", "routerLink", "", 3, "disabled"]], template: function AtividadeCadastroComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 39, vars: 18, consts: [[1, "card"], ["legend", "Cadastro de Atividades"], [1, "p-field", "p-col-6", "p-md-12", 3, "hidden"], ["mode", "indeterminate"], [1, "p-fluid"], [3, "ngSubmit"], ["form", ""], [1, "p-col-12", "p-md-6"], ["type", "text", "pInputText", "", "name", "nome", 3, "ngModel", "ngModelChange"], ["nome", ""], ["pInputTextarea", "", "name", "enunciado", 3, "ngModel", "ngModelChange"], ["placeholder", "Selecione", "name", "faixaEtaria", 3, "options", "showClear", "ngModel", "ngModelChange", "onChange"], ["faixaEtaria", ""], ["defaultLabel", "Select a City", "display", "chip", "name", "campoExperiencia", 3, "options", "ngModel", "ngModelChange", "onChange"], ["campoExperiencia", ""], ["name", "objetivosAprendizagem", "placeholder", "Selecione", 3, "showClear", "options", "ngModel", "ngModelChange"], ["mode", "advanced", "name", "arquivo", "chooseLabel", "Adicionar", "cancelLabel", "Cancelar", 3, "url", "showUploadButton"], ["arquivo", ""], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "disabled", "click"], ["pButton", "", "type", "button", "label", "Voltar", "icon", "pi pi-check", "routerLink", "", 3, "disabled"]], template: function AtividadeCadastroComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "p-fieldset", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -2010,15 +2162,15 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "label");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "Campo Experiencia");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "p-dropdown", 13, 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_dropdown_ngModelChange_24_listener($event) { return ctx.atividade.campoExperiencia = $event; })("onChange", function AtividadeCadastroComponent_Template_p_dropdown_onChange_24_listener() { return ctx.aprendizagemDesenvolvimentoAlterada(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "p-multiSelect", 13, 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_multiSelect_ngModelChange_24_listener($event) { return ctx.atividade.campoExperiencia = $event; })("onChange", function AtividadeCadastroComponent_Template_p_multiSelect_onChange_24_listener() { return ctx.aprendizagemDesenvolvimentoAlterada(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "label");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Objetivos de aprendizagem e desenvolvimento");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "p-dropdown", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "p-dropdown", 15);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_dropdown_ngModelChange_29_listener($event) { return ctx.atividade.aprendizagemDesenvolvimento = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -2026,10 +2178,10 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "label");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](32, "Anexar Imagem");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](33, "p-fileUpload", 15, 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](33, "p-fileUpload", 16, 17);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "button", 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "button", 18);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AtividadeCadastroComponent_Template_button_click_36_listener() { return ctx.uploadComDados(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -2037,14 +2189,14 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "button", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "button", 19);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("hidden", !ctx.requestProgress);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleMap"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](18, _c1));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleMap"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](17, _c1));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.atividade.nome);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
@@ -2052,7 +2204,7 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.faixaEtariaList)("showClear", true)("ngModel", ctx.atividade.faixaEtaria);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.campoExperienciaList)("showClear", true)("ngModel", ctx.atividade.campoExperiencia);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.campoExperienciaList)("ngModel", ctx.atividade.campoExperiencia);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("showClear", true)("options", ctx.aprendizagemDesenvolvimento)("ngModel", ctx.atividade.aprendizagemDesenvolvimento);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
@@ -2062,7 +2214,7 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.requestProgress);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.requestProgress);
-    } }, directives: [primeng_fieldset__WEBPACK_IMPORTED_MODULE_5__["Fieldset"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_6__["ProgressBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["DefaultValueAccessor"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__["InputText"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__["InputTextarea"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_10__["Dropdown"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_11__["FileUpload"], primeng_button__WEBPACK_IMPORTED_MODULE_12__["ButtonDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLink"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhdGl2aWRhZGUtY2FkYXN0cm8uY29tcG9uZW50LmNzcyJ9 */"] });
+    } }, directives: [primeng_fieldset__WEBPACK_IMPORTED_MODULE_5__["Fieldset"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_6__["ProgressBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["DefaultValueAccessor"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__["InputText"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__["InputTextarea"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_10__["Dropdown"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_11__["MultiSelect"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_12__["FileUpload"], primeng_button__WEBPACK_IMPORTED_MODULE_13__["ButtonDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLink"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhdGl2aWRhZGUtY2FkYXN0cm8uY29tcG9uZW50LmNzcyJ9 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AtividadeCadastroComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -2177,17 +2329,20 @@ class CabecalhoService {
         this.http = http;
     }
     listaCabecalhos() {
-        return this.http.get('https://educa-mais-api.herokuapp.com/atividade/cabecalho')
+        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/cabecalho')
+        return this.http.get('http://localhost:8080/atividade/cabecalho')
             .toPromise()
             .then(data => { return data; });
     }
     deletarCabecalho(id) {
-        return this.http.delete(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${id}`)
+        // return this.http.delete(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${id}`)
+        return this.http.delete(`http://localhost:8080/atividade/cabecalho/${id}`)
             .toPromise()
             .then(response => { return response; });
     }
     consultarIdCabecalho(id) {
-        return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${id}`)
+        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${id}`)
+        return this.http.get(`http://localhost:8080/atividade/cabecalho/${id}`)
             .toPromise()
             .then(response => {
             const cadastro = response;
@@ -2196,7 +2351,8 @@ class CabecalhoService {
     }
     atualizarCabecalho(cabecalho) {
         console.log("id service", cabecalho);
-        return this.http.put(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${cabecalho.id}`, cabecalho)
+        //    return this.http.put(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${cabecalho.id}`, cabecalho)
+        return this.http.put(`http://localhost:8080/atividade/cabecalho/${cabecalho.id}`, cabecalho)
             .toPromise()
             .then(response => {
             const cabecalhoAtualizado = response;

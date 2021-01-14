@@ -71,6 +71,7 @@ export class TesteComponent implements OnInit {
         const formData = new FormData();
         const dados = JSON.stringify(this.multselect);
         formData.append('opcoes', dados);
+        // formData.append('file', dados);
 
         this.http.post(this.apiuploadComDadosUrl, formData)
         .toPromise()

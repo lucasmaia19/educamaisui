@@ -14,6 +14,12 @@ export class Atividade {
     arquivo?: File;
 }
 
+export class Multselect {
+    id?: string;
+    nome?: string;
+}
+
+
 @Component({
     selector: 'app-atividade-cadastro',
     templateUrl: './atividade-cadastro.component.html',
@@ -32,6 +38,10 @@ export class AtividadeCadastroComponent implements OnInit {
 
     atividades: any;
 
+    multselect = new Multselect();
+
+    cities: any[];
+
     requestProgress = false;
 
     faixaEtariaList = new Array<any>();
@@ -43,12 +53,20 @@ export class AtividadeCadastroComponent implements OnInit {
         private messageService: MessageService,
         private router: Router,
         private cadastroService: CadastroService,
-        ) {}
+        ) {
+            this.cities = [
+                { nome: "New York", id: "NY" },
+                { nome: "Rome", id: "RM" },
+                { nome: "London", id: "LDN" },
+                { nome: "Istanbul", id: "IST" },
+                { nome: "Paris", id: "PRS" }
+              ];
+        }
 
     ngOnInit(): void {
 
-        // this.atividade = { nome: 'Colorir',
-            //  enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
+        this.atividade = { nome: 'Colorir',
+             enunciado: 'Ajude a Monica a chegar na flor! Passe o lápis nos caminhos até chegar na flor!' };
 
         this.consultarListaFaixaEtaria();
         this.consultarListaCampoExperiencia();
@@ -156,6 +174,10 @@ export class AtividadeCadastroComponent implements OnInit {
 
         const formData = new FormData();
 
+        const dadosCities = JSON.stringify(this.multselect);
+        formData.append('opcoes', dadosCities);
+        // formData.append('file', dadosCities);
+
         const dados = this.atividade;
         Object.keys(dados).forEach(k => {
             formData.append(k, dados[k]);
@@ -173,18 +195,19 @@ export class AtividadeCadastroComponent implements OnInit {
             // this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
                 this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
 
-                console.log("enunciado:", this.atividade.enunciado)
-                console.log("nome", this.atividade.nome)
-                console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
-                console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
-                console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
+                // console.log("enunciado:", this.atividade.enunciado)
+                // console.log("nome", this.atividade.nome)
+                // console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
+                // console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
+                // console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
+                console.log("dadosCities", dadosCities)
 
                 this.listaCadastros();
                 this.requestProgress = false;
 
-                // location.reload()
+                location.reload()
 
-                this.clearForm();
+                // this.clearForm();
             })
             .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CADASTRAR'}))
             .finally(() => this.requestProgress = false);
