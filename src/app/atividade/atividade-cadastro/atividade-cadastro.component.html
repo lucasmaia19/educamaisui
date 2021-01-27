@@ -52,11 +52,12 @@
                         </p-multiSelect>
                 </div>
 
-                <!-- <div class="p-col-12 p-md-6">
+                <div class="p-col-12 p-md-6">
                         <h5>Chips</h5>
-                        <p-multiSelect [options]="cities" [(ngModel)]="multselect.nome" defaultLabel="Select a City" optionLabel="nome"
+                        <p-multiSelect [options]="cities" optionLabel="nome"
+                            [(ngModel)]="multselect.nome"  name="multselect"
                             display="chip"></p-multiSelect>
-                </div> -->
+                </div>
 
                 <div class="p-col-12 p-md-6">
                     <label>Objetivos de aprendizagem e desenvolvimento</label>

@@ -164,7 +164,8 @@ export class AtividadeCadastroComponent implements OnInit {
             .finally(() => this.requestProgress = false);
     }
 
-    uploadComDados(): void {
+    uploadComDados() {
+
 
         if (this.requestProgress) {
             return;
@@ -174,9 +175,10 @@ export class AtividadeCadastroComponent implements OnInit {
 
         const formData = new FormData();
 
-        const dadosCities = JSON.stringify(this.multselect);
+        // const dadosCities = JSON.stringify(this.multselect);
+        const dadosCities = JSON.stringify(this.atividade.faixaEtaria);
         formData.append('opcoes', dadosCities);
-        // formData.append('file', dadosCities);
+        console.log("antes da req dadosCities", dadosCities)
 
         const dados = this.atividade;
         Object.keys(dados).forEach(k => {
@@ -192,20 +194,21 @@ export class AtividadeCadastroComponent implements OnInit {
             .toPromise()
             .then(response => {
 
-            // this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
+             // this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
                 this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
 
                 // console.log("enunciado:", this.atividade.enunciado)
                 // console.log("nome", this.atividade.nome)
-                // console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
                 // console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
                 // console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
                 console.log("dadosCities", dadosCities)
 
+                console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
+
                 this.listaCadastros();
                 this.requestProgress = false;
 
-                location.reload()
+                // location.reload()
 
                 // this.clearForm();
             })

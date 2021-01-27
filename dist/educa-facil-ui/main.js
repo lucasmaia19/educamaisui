@@ -56,28 +56,11 @@ class TesteComponent {
         console.log(this.cities);
     }
     teste() {
-        // const multSelectList = new Array<any>();
-        // Object.keys(dados).forEach(k => {
-        //console.warn('for');
-        //console.log('k', k);
-        //console.log('dados[k]', dados[k]);
-        //console.log('dados[k]', JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
-        // multSelectList.push(JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
-        //JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']});
-        // formData.append(k, JSON.stringify({nome: dados[k]['nome'], id: dados[k]['id']}));
-        //console.log(dados[k]['nome']);
-        //console.log(dados[k]['id']);
-        // formData.append(k, dados[k]);
-        // formData.append('multSelect', multSelectList.toString());
-        // console.log("formData", formData)
-        // console.log("multSelectList", multSelectList)
-        // });
-        //const dados = this.multselect.nome
-        //console.log("dados", dados)
         const formData = new FormData();
         const dados = JSON.stringify(this.multselect);
         formData.append('opcoes', dados);
         // formData.append('file', dados);
+        console.log("antes da req dadosCities", dados);
         this.http.post(this.apiuploadComDadosUrl, formData)
             .toPromise()
             .then(response => {
@@ -87,7 +70,7 @@ class TesteComponent {
     }
 }
 TesteComponent.ɵfac = function TesteComponent_Factory(t) { return new (t || TesteComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_atividade_cadastro_service__WEBPACK_IMPORTED_MODULE_2__["CadastroService"])); };
-TesteComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TesteComponent, selectors: [["app-teste"]], decls: 5, vars: 2, consts: [["defaultLabel", "Select a City", "optionLabel", "nome", "display", "chip", 3, "options", "ngModel", "ngModelChange"], [1, "p-col-12", "p-md-6"], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "click"]], template: function TesteComponent_Template(rf, ctx) { if (rf & 1) {
+TesteComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TesteComponent, selectors: [["app-teste"]], decls: 5, vars: 2, consts: [["optionLabel", "nome", "display", "chip", 3, "options", "ngModel", "ngModelChange"], [1, "p-col-12", "p-md-6"], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "click"]], template: function TesteComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h5");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Chips");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1946,8 +1929,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primeng/inputtext */ "7kUa");
 /* harmony import */ var primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primeng/inputtextarea */ "zFJ7");
-/* harmony import */ var primeng_dropdown__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primeng/dropdown */ "arFO");
-/* harmony import */ var primeng_multiselect__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primeng/multiselect */ "lVkt");
+/* harmony import */ var primeng_multiselect__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primeng/multiselect */ "lVkt");
+/* harmony import */ var primeng_dropdown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primeng/dropdown */ "arFO");
 /* harmony import */ var primeng_fileupload__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primeng/fileupload */ "NCSE");
 /* harmony import */ var primeng_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primeng/button */ "jIHw");
 
@@ -2081,7 +2064,7 @@ class AtividadeCadastroComponent {
         const formData = new FormData();
         const dadosCities = JSON.stringify(this.multselect);
         formData.append('opcoes', dadosCities);
-        // formData.append('file', dadosCities);
+        console.log("antes da req dadosCities", dadosCities);
         const dados = this.atividade;
         Object.keys(dados).forEach(k => {
             formData.append(k, dados[k]);
@@ -2097,14 +2080,14 @@ class AtividadeCadastroComponent {
             this.messageService.add({ severity: 'success', summary: 'Cadastro adicionado com sucesso!' });
             // console.log("enunciado:", this.atividade.enunciado)
             // console.log("nome", this.atividade.nome)
-            // console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
             // console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
             // console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
             console.log("dadosCities", dadosCities);
+            console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria);
             this.listaCadastros();
             this.requestProgress = false;
             // location.reload()
-            this.clearForm();
+            // this.clearForm();
         })
             .catch(erro => this.messageService.add({ severity: 'error', summary: 'ERRO AO CADASTRAR' }))
             .finally(() => this.requestProgress = false);
@@ -2125,7 +2108,7 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.arquivo = _t.first);
-    } }, decls: 39, vars: 18, consts: [[1, "card"], ["legend", "Cadastro de Atividades"], [1, "p-field", "p-col-6", "p-md-12", 3, "hidden"], ["mode", "indeterminate"], [1, "p-fluid"], [3, "ngSubmit"], ["form", ""], [1, "p-col-12", "p-md-6"], ["type", "text", "pInputText", "", "name", "nome", 3, "ngModel", "ngModelChange"], ["nome", ""], ["pInputTextarea", "", "name", "enunciado", 3, "ngModel", "ngModelChange"], ["placeholder", "Selecione", "name", "faixaEtaria", 3, "options", "showClear", "ngModel", "ngModelChange", "onChange"], ["faixaEtaria", ""], ["defaultLabel", "Select a City", "display", "chip", "name", "campoExperiencia", 3, "options", "ngModel", "ngModelChange", "onChange"], ["campoExperiencia", ""], ["name", "objetivosAprendizagem", "placeholder", "Selecione", 3, "showClear", "options", "ngModel", "ngModelChange"], ["mode", "advanced", "name", "arquivo", "chooseLabel", "Adicionar", "cancelLabel", "Cancelar", 3, "url", "showUploadButton"], ["arquivo", ""], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "disabled", "click"], ["pButton", "", "type", "button", "label", "Voltar", "icon", "pi pi-check", "routerLink", "", 3, "disabled"]], template: function AtividadeCadastroComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 43, vars: 21, consts: [[1, "card"], ["legend", "Cadastro de Atividades"], [1, "p-field", "p-col-6", "p-md-12", 3, "hidden"], ["mode", "indeterminate"], [1, "p-fluid"], [3, "ngSubmit"], ["form", ""], [1, "p-col-12", "p-md-6"], ["type", "text", "pInputText", "", "name", "nome", 3, "ngModel", "ngModelChange"], ["nome", ""], ["pInputTextarea", "", "name", "enunciado", 3, "ngModel", "ngModelChange"], ["defaultLabel", "Selecione", "display", "chip", "name", "faixaEtaria", 3, "options", "ngModel", "resetFilterOnHide", "ngModelChange", "onChange"], ["campoExperiencia", ""], ["defaultLabel", "Selecione", "display", "chip", "name", "campoExperiencia", 3, "options", "ngModel", "resetFilterOnHide", "ngModelChange", "onChange"], ["optionLabel", "nome", "display", "chip", 3, "options", "ngModel", "ngModelChange"], ["name", "objetivosAprendizagem", "placeholder", "Selecione", 3, "showClear", "options", "ngModel", "ngModelChange"], ["mode", "advanced", "name", "arquivo", "chooseLabel", "Adicionar", "cancelLabel", "Cancelar", 3, "url", "showUploadButton"], ["arquivo", ""], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "disabled", "click"], ["pButton", "", "type", "button", "label", "Voltar", "icon", "pi pi-check", "routerLink", "", 3, "disabled"]], template: function AtividadeCadastroComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "p-fieldset", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -2154,58 +2137,68 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "label");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Faixa Et\u00E1rias");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "p-dropdown", 11, 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_dropdown_ngModelChange_19_listener($event) { return ctx.atividade.faixaEtaria = $event; })("onChange", function AtividadeCadastroComponent_Template_p_dropdown_onChange_19_listener() { return ctx.aprendizagemDesenvolvimentoAlterada(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "p-multiSelect", 11, 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_multiSelect_ngModelChange_19_listener($event) { return ctx.atividade.faixaEtaria = $event; })("onChange", function AtividadeCadastroComponent_Template_p_multiSelect_onChange_19_listener() { return ctx.aprendizagemDesenvolvimentoAlterada(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "div", 7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "label");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "Campo Experiencia");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "p-multiSelect", 13, 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "p-multiSelect", 13, 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_multiSelect_ngModelChange_24_listener($event) { return ctx.atividade.campoExperiencia = $event; })("onChange", function AtividadeCadastroComponent_Template_p_multiSelect_onChange_24_listener() { return ctx.aprendizagemDesenvolvimentoAlterada(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Objetivos de aprendizagem e desenvolvimento");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "h5");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Chips");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "p-dropdown", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_dropdown_ngModelChange_29_listener($event) { return ctx.atividade.aprendizagemDesenvolvimento = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "p-multiSelect", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_multiSelect_ngModelChange_29_listener($event) { return ctx.multselect.nome = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "div", 7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](32, "Anexar Imagem");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](32, "Objetivos de aprendizagem e desenvolvimento");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](33, "p-fileUpload", 16, 17);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "button", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AtividadeCadastroComponent_Template_button_click_36_listener() { return ctx.uploadComDados(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "p-dropdown", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_dropdown_ngModelChange_33_listener($event) { return ctx.atividade.aprendizagemDesenvolvimento = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "label");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, "Anexar Imagem");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](37, "p-fileUpload", 16, 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "button", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AtividadeCadastroComponent_Template_button_click_40_listener() { return ctx.uploadComDados(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "button", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](42, "button", 19);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("hidden", !ctx.requestProgress);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleMap"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](17, _c1));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleMap"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](20, _c1));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.atividade.nome);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.atividade.enunciado);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.faixaEtariaList)("showClear", true)("ngModel", ctx.atividade.faixaEtaria);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.faixaEtariaList)("ngModel", ctx.atividade.faixaEtaria)("resetFilterOnHide", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.campoExperienciaList)("ngModel", ctx.atividade.campoExperiencia);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.campoExperienciaList)("ngModel", ctx.atividade.campoExperiencia)("resetFilterOnHide", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.cities)("ngModel", ctx.multselect.nome);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("showClear", true)("options", ctx.aprendizagemDesenvolvimento)("ngModel", ctx.atividade.aprendizagemDesenvolvimento);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("url", ctx.apiUploadUrl);
@@ -2214,7 +2207,7 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.requestProgress);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.requestProgress);
-    } }, directives: [primeng_fieldset__WEBPACK_IMPORTED_MODULE_5__["Fieldset"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_6__["ProgressBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["DefaultValueAccessor"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__["InputText"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__["InputTextarea"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_10__["Dropdown"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_11__["MultiSelect"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_12__["FileUpload"], primeng_button__WEBPACK_IMPORTED_MODULE_13__["ButtonDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLink"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhdGl2aWRhZGUtY2FkYXN0cm8uY29tcG9uZW50LmNzcyJ9 */"] });
+    } }, directives: [primeng_fieldset__WEBPACK_IMPORTED_MODULE_5__["Fieldset"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_6__["ProgressBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["DefaultValueAccessor"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__["InputText"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__["InputTextarea"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_10__["MultiSelect"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_11__["Dropdown"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_12__["FileUpload"], primeng_button__WEBPACK_IMPORTED_MODULE_13__["ButtonDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLink"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhdGl2aWRhZGUtY2FkYXN0cm8uY29tcG9uZW50LmNzcyJ9 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AtividadeCadastroComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
