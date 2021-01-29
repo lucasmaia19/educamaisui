@@ -30,18 +30,10 @@
                     <label>Faixa Etárias</label>
                     <p-multiSelect [options]="faixaEtariaList" [(ngModel)]="atividade.faixaEtaria"
                          defaultLabel="Selecione" display="chip" name="faixaEtaria"
-                         #campoExperiencia [resetFilterOnHide]="true"
+                         #faixaEtaria [resetFilterOnHide]="true"
                         (onChange)="aprendizagemDesenvolvimentoAlterada()">
                     </p-multiSelect>
                 </div>
-
-                <!-- <div class="p-col-12 p-md-6">
-                    <label>Campo Experiencia</label>
-                    <p-dropdown [options]="campoExperienciaList" name="campoExperiencia" placeholder="Selecione"
-                    [showClear]="true" #campoExperiencia [(ngModel)]="atividade.campoExperiencia"
-                    (onChange)="aprendizagemDesenvolvimentoAlterada()"
-                    ></p-dropdown>
-                </div> -->
 
                 <div class="p-col-12 p-md-6">
                     <label>Campo Experiencia</label>
@@ -52,12 +44,12 @@
                         </p-multiSelect>
                 </div>
 
-                <div class="p-col-12 p-md-6">
+                <!-- <div class="p-col-12 p-md-6">
                         <h5>Chips</h5>
                         <p-multiSelect [options]="cities" optionLabel="nome"
                             [(ngModel)]="multselect.nome"  name="multselect"
                             display="chip"></p-multiSelect>
-                </div>
+                </div> -->
 
                 <div class="p-col-12 p-md-6">
                     <label>Objetivos de aprendizagem e desenvolvimento</label>

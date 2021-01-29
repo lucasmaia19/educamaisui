@@ -176,9 +176,13 @@ export class AtividadeCadastroComponent implements OnInit {
         const formData = new FormData();
 
         // const dadosCities = JSON.stringify(this.multselect);
-        const dadosCities = JSON.stringify(this.atividade.faixaEtaria);
-        formData.append('opcoes', dadosCities);
-        console.log("antes da req dadosCities", dadosCities)
+        const faixaEtariaOp = JSON.stringify(this.atividade.faixaEtaria);
+        formData.append('faixaEtariaOp', faixaEtariaOp);
+        console.log("antes da req faixaEtariaOp", faixaEtariaOp)
+
+        const campoExperienciaOp = JSON.stringify(this.atividade.campoExperiencia);
+        formData.append('campoExperienciaOp', campoExperienciaOp);
+        console.log("antes da req campoExperienciaOp", campoExperienciaOp)
 
         const dados = this.atividade;
         Object.keys(dados).forEach(k => {
@@ -201,9 +205,9 @@ export class AtividadeCadastroComponent implements OnInit {
                 // console.log("nome", this.atividade.nome)
                 // console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
                 // console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
-                console.log("dadosCities", dadosCities)
+                console.log("faixaEtariaOp", faixaEtariaOp)
 
-                console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria)
+                console.log("campoExperienciaOp", campoExperienciaOp)
 
                 this.listaCadastros();
                 this.requestProgress = false;
