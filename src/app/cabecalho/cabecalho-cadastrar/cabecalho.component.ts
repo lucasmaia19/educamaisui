@@ -86,7 +86,6 @@ export class CabecalhoComponent implements OnInit {
 
         this.requestProgress = true;
 
-
         const formData = new FormData();
 
         console.warn(this.cabecalho.data)

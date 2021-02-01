@@ -19,7 +19,6 @@ export class Multselect {
     nome?: string;
 }
 
-
 @Component({
     selector: 'app-atividade-cadastro',
     templateUrl: './atividade-cadastro.component.html',
@@ -122,7 +121,7 @@ export class AtividadeCadastroComponent implements OnInit {
 
             // console.log('this.atividade.campoExperiencia != undefined');
 
-            this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia)
+            this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia, this.atividade.campoExperiencia)
                 .then(response =>
                     {
                         console.log(response)
