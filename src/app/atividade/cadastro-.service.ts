@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -7,7 +8,14 @@ import { Injectable } from '@angular/core';
 export class CadastroService {
 
     // urlBase = "https://educa-mais-api.herokuapp.com/";
-    urlBase = "http://localhost:8080/";
+    //urlBase = "http://localhost:8080/";
+    urlBase = environment.urlBase;
+
+    // urlBase = "https://educa-mais-api.herokuapp.com/"
+
+//    this.environment.urlBase;
+
+    //environment = environment;
 
     constructor(private http: HttpClient) { }
 
@@ -20,6 +28,12 @@ export class CadastroService {
         // const url = `https://educa-mais-api.herokuapp.com/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
         // const url = `http://localhost:8080/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
         const url = this.urlBase + `atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+
+
+        //const url = this.environment.urlBase + `atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+
+        //this.environment.urlBase
+
         console.log(url)
 
         return this.http.get(url, { responseType: 'blob' })
@@ -43,19 +57,21 @@ export class CadastroService {
             .then(response => {return response});
     }
 
-    consultarListaFaixaEtariaFiltroId(id: any): Promise<any> {
-        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
-        // return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
-        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
+    consultarListaFaixaEtariaFiltroId(idList: any): Promise<any> {
+
+        let faixaEtariaIdList = `faixaEtariaIdList=${idList}`;
+
+        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id-list?${faixaEtariaIdList}`)
             .toPromise()
             .then(response => {return response});
     }
 
-    consultarCampoExperienciaFiltroId(id: any, idd: any): Promise<any> {
-        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
-        // return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
-        // return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
-        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}/${idd}`)
+    consultarCampoExperienciaFiltroId(idList: any): Promise<any> {
+
+        let campoExperienciaIdList = `campoExperienciaIdList=${idList}`;
+
+        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id-list?${campoExperienciaIdList}`)
+
             .toPromise()
             .then(response => {return response});
     }

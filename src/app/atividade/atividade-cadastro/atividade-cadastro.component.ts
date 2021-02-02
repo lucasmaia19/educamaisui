@@ -47,6 +47,7 @@ export class AtividadeCadastroComponent implements OnInit {
     campoExperienciaList = new Array<any>();
     aprendizagemDesenvolvimento = new Array<any>();
 
+
     constructor(
         private http: HttpClient,
         private messageService: MessageService,
@@ -117,23 +118,19 @@ export class AtividadeCadastroComponent implements OnInit {
                         }
                     })
 
-        } else if (this.atividade.campoExperiencia != undefined) {
+         } else if (this.atividade.campoExperiencia != undefined) {
 
-            // console.log('this.atividade.campoExperiencia != undefined');
-
-            this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia, this.atividade.campoExperiencia)
-                .then(response =>
-                    {
+            this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia)
+            .then(response =>
+                {
                         console.log(response)
                         for (var item of response) {
                             const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
                             this.aprendizagemDesenvolvimento.push(dropDownItem)
                         }
-                    })
+            })
 
         } else if (this.atividade.faixaEtaria != undefined) {
-
-            // console.log('dentro de this.atividade.faixaEtaria != undefined');
 
             this.cadastroService.consultarListaFaixaEtariaFiltroId(this.atividade.faixaEtaria)
                 .then(response =>
@@ -147,9 +144,6 @@ export class AtividadeCadastroComponent implements OnInit {
                 )
         }
 
-        console.log("depois da alteracao: this.aprendizagemDesenvolvimento", this.aprendizagemDesenvolvimento);
-
-        // Recuperar a resposta e adicionar na lista de objetivos e aprendizagem
     }
 
     listaCadastros() {
@@ -183,6 +177,10 @@ export class AtividadeCadastroComponent implements OnInit {
         formData.append('campoExperienciaOp', campoExperienciaOp);
         console.log("antes da req campoExperienciaOp", campoExperienciaOp)
 
+        const aprendizagemDesenvolvimentoOp = JSON.stringify(this.atividade.aprendizagemDesenvolvimento);
+        formData.append('aprendizagemDesenvolvimentoOp', aprendizagemDesenvolvimentoOp);
+        console.log("antes da req aprendizagemDesenvolvimentoOp", aprendizagemDesenvolvimentoOp)
+
         const dados = this.atividade;
         Object.keys(dados).forEach(k => {
             formData.append(k, dados[k]);
@@ -207,6 +205,8 @@ export class AtividadeCadastroComponent implements OnInit {
                 console.log("faixaEtariaOp", faixaEtariaOp)
 
                 console.log("campoExperienciaOp", campoExperienciaOp)
+
+                console.log("aprendizagemDesenvolvimentoOp", aprendizagemDesenvolvimentoOp)
 
                 this.listaCadastros();
                 this.requestProgress = false;

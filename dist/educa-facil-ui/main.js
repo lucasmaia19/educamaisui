@@ -112,7 +112,9 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false
+    production: false,
+    // urlBase: "https://educa-mais-api.herokuapp.com/"
+    urlBase: "http://localhost:8080/"
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -136,77 +138,101 @@ const environment = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroService", function() { return CadastroService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../environments/environment */ "AytR");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+
 
 
 
 class CadastroService {
+    // urlBase = "https://educa-mais-api.herokuapp.com/"
+    //    this.environment.urlBase;
+    //environment = environment;
     constructor(http) {
         this.http = http;
-    }
-    consultarListaFaixaEtaria() {
-        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/faixa-etaria')
-        return this.http.get('http://localhost:8080/atividade/faixa-etaria')
-            .toPromise()
-            .then(response => { return response; });
-    }
-    consultarListaCampoExperiencia() {
-        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/campo-experiencia')
-        return this.http.get('http://localhost:8080/atividade/campo-experiencia')
-            .toPromise()
-            .then(response => { return response; });
-    }
-    consultarListaFaixaEtariaFiltroId(id) {
-        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
-        return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
-            .toPromise()
-            .then(response => { return response; });
-    }
-    consultarCampoExperienciaFiltroId(id) {
-        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
-        return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
-            .toPromise()
-            .then(response => { return response; });
-    }
-    consultarCeFeFiltroId(id, idd) {
-        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
-        return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
-            .toPromise()
-            .then(response => { return response; });
-    }
-    listaCadastros() {
-        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/')
-        return this.http.get('http://localhost:8080/atividade/')
-            .toPromise()
-            .then(data => { return data; });
-    }
-    deletarCadastro(id) {
-        return this.http.delete(`http://localhost:8080/atividade/${id}`)
-            // return this.http.delete(`https://educa-mais-api.herokuapp.com/atividade/${id}`)
-            .toPromise()
-            .then(response => { return response; });
+        // urlBase = "https://educa-mais-api.herokuapp.com/";
+        //urlBase = "http://localhost:8080/";
+        this.urlBase = _environments_environment__WEBPACK_IMPORTED_MODULE_0__["environment"].urlBase;
     }
     gerarPDF(atividade, cabecalho) {
         console.log("gerarPDF service");
         console.log("atividade.id", atividade.id);
         console.log("cabecalho.id", cabecalho.id);
         // const url = `https://educa-mais-api.herokuapp.com/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
-        const url = `http://localhost:8080/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+        // const url = `http://localhost:8080/atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+        const url = this.urlBase + `atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+        //const url = this.environment.urlBase + `atividade/gerar-pdf/${atividade.id}/${cabecalho.id}`;
+        //this.environment.urlBase
         console.log(url);
         return this.http.get(url, { responseType: 'blob' })
             .toPromise()
             .then(response => { return response; });
     }
+    consultarListaFaixaEtaria() {
+        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/faixa-etaria')
+        // return this.http.get('http://localhost:8080/atividade/faixa-etaria')
+        return this.http.get(this.urlBase + 'atividade/faixa-etaria')
+            .toPromise()
+            .then(response => { return response; });
+    }
+    consultarListaCampoExperiencia() {
+        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/campo-experiencia')
+        // return this.http.get('http://localhost:8080/atividade/campo-experiencia')
+        return this.http.get(this.urlBase + 'atividade/campo-experiencia')
+            .toPromise()
+            .then(response => { return response; });
+    }
+    consultarListaFaixaEtariaFiltroId(id) {
+        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
+        // return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
+        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/faixa-etaria-id/${id}`)
+            .toPromise()
+            .then(response => { return response; });
+    }
+    consultarCampoExperienciaFiltroId(idList) {
+        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
+        // return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
+        // return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}`)
+        // return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id/${id}/${idd}`)
+        console.warn('consultarCampoExperienciaFiltroId');
+        console.warn(idList);
+        idList;
+        let campoExperienciaIdList = `campoExperienciaIdList=${idList}`;
+        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/campo-experiencia-id-list?${campoExperienciaIdList}`)
+            .toPromise()
+            .then(response => { return response; });
+    }
+    consultarCeFeFiltroId(id, idd) {
+        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
+        // return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
+        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
+            .toPromise()
+            .then(response => { return response; });
+    }
+    listaCadastros() {
+        // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/')
+        // return this.http.get('http://localhost:8080/atividade/')
+        return this.http.get(this.urlBase + 'atividade/')
+            .toPromise()
+            .then(data => { return data; });
+    }
+    deletarCadastro(id) {
+        // return this.http.delete(`https://educa-mais-api.herokuapp.com/atividade/${id}`)
+        // return this.http.delete(`http://localhost:8080/atividade/${id}`)
+        return this.http.delete(this.urlBase + `atividade/${id}`)
+            .toPromise()
+            .then(response => { return response; });
+    }
 }
-CadastroService.ɵfac = function CadastroService_Factory(t) { return new (t || CadastroService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
-CadastroService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: CadastroService, factory: CadastroService.ɵfac, providedIn: 'root' });
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CadastroService, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+CadastroService.ɵfac = function CadastroService_Factory(t) { return new (t || CadastroService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
+CadastroService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: CadastroService, factory: CadastroService.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](CadastroService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }]; }, null); })();
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }]; }, null); })();
 
 
 /***/ }),
@@ -1930,10 +1956,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primeng/inputtext */ "7kUa");
 /* harmony import */ var primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primeng/inputtextarea */ "zFJ7");
 /* harmony import */ var primeng_multiselect__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primeng/multiselect */ "lVkt");
-/* harmony import */ var primeng_dropdown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primeng/dropdown */ "arFO");
-/* harmony import */ var primeng_fileupload__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primeng/fileupload */ "NCSE");
-/* harmony import */ var primeng_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primeng/button */ "jIHw");
-
+/* harmony import */ var primeng_fileupload__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primeng/fileupload */ "NCSE");
+/* harmony import */ var primeng_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primeng/button */ "jIHw");
 
 
 
@@ -2023,6 +2047,14 @@ class AtividadeCadastroComponent {
         }
         else if (this.atividade.campoExperiencia != undefined) {
             // console.log('this.atividade.campoExperiencia != undefined');
+            console.log("this.atividade.campoExperiencia antes", this.atividade.campoExperiencia);
+            //var resCampoEx = this.atividade.campoExperiencia + '';
+            //console.log("resCampoEx" ,resCampoEx)
+            //var result = resCampoEx.split(",", -1)
+            //resCampoEx.replace("\\[|\\]", "")
+            //console.log("resCampoEx dps" ,resCampoEx)
+            // console.log("result", result)
+            console.warn("this.atividade.campoExperiencia dps", this.atividade.campoExperiencia);
             this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia)
                 .then(response => {
                 console.log(response);
@@ -2063,9 +2095,15 @@ class AtividadeCadastroComponent {
         this.requestProgress = true;
         const formData = new FormData();
         // const dadosCities = JSON.stringify(this.multselect);
-        const dadosCities = JSON.stringify(this.atividade.faixaEtaria);
-        formData.append('opcoes', dadosCities);
-        console.log("antes da req dadosCities", dadosCities);
+        const faixaEtariaOp = JSON.stringify(this.atividade.faixaEtaria);
+        formData.append('faixaEtariaOp', faixaEtariaOp);
+        console.log("antes da req faixaEtariaOp", faixaEtariaOp);
+        const campoExperienciaOp = JSON.stringify(this.atividade.campoExperiencia);
+        formData.append('campoExperienciaOp', campoExperienciaOp);
+        console.log("antes da req campoExperienciaOp", campoExperienciaOp);
+        const aprendizagemDesenvolvimentoOp = JSON.stringify(this.atividade.aprendizagemDesenvolvimento);
+        formData.append('aprendizagemDesenvolvimentoOp', aprendizagemDesenvolvimentoOp);
+        console.log("antes da req aprendizagemDesenvolvimentoOp", aprendizagemDesenvolvimentoOp);
         const dados = this.atividade;
         Object.keys(dados).forEach(k => {
             formData.append(k, dados[k]);
@@ -2083,8 +2121,9 @@ class AtividadeCadastroComponent {
             // console.log("nome", this.atividade.nome)
             // console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
             // console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
-            console.log("dadosCities", dadosCities);
-            console.log("atividade.faixaEtaria: ", this.atividade.faixaEtaria);
+            console.log("faixaEtariaOp", faixaEtariaOp);
+            console.log("campoExperienciaOp", campoExperienciaOp);
+            console.log("aprendizagemDesenvolvimentoOp", aprendizagemDesenvolvimentoOp);
             this.listaCadastros();
             this.requestProgress = false;
             // location.reload()
@@ -2109,7 +2148,7 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.arquivo = _t.first);
-    } }, decls: 43, vars: 21, consts: [[1, "card"], ["legend", "Cadastro de Atividades"], [1, "p-field", "p-col-6", "p-md-12", 3, "hidden"], ["mode", "indeterminate"], [1, "p-fluid"], [3, "ngSubmit"], ["form", ""], [1, "p-col-12", "p-md-6"], ["type", "text", "pInputText", "", "name", "nome", 3, "ngModel", "ngModelChange"], ["nome", ""], ["pInputTextarea", "", "name", "enunciado", 3, "ngModel", "ngModelChange"], ["defaultLabel", "Selecione", "display", "chip", "name", "faixaEtaria", 3, "options", "ngModel", "resetFilterOnHide", "ngModelChange", "onChange"], ["campoExperiencia", ""], ["defaultLabel", "Selecione", "display", "chip", "name", "campoExperiencia", 3, "options", "ngModel", "resetFilterOnHide", "ngModelChange", "onChange"], ["optionLabel", "nome", "name", "multselect", "display", "chip", 3, "options", "ngModel", "ngModelChange"], ["name", "objetivosAprendizagem", "placeholder", "Selecione", 3, "showClear", "options", "ngModel", "ngModelChange"], ["mode", "advanced", "name", "arquivo", "chooseLabel", "Adicionar", "cancelLabel", "Cancelar", 3, "url", "showUploadButton"], ["arquivo", ""], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "disabled", "click"], ["pButton", "", "type", "button", "label", "Voltar", "icon", "pi pi-check", "routerLink", "", 3, "disabled"]], template: function AtividadeCadastroComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 40, vars: 19, consts: [[1, "card"], ["legend", "Cadastro de Atividades"], [1, "p-field", "p-col-6", "p-md-12", 3, "hidden"], ["mode", "indeterminate"], [1, "p-fluid"], [3, "ngSubmit"], ["form", ""], [1, "p-col-12", "p-md-6"], ["type", "text", "pInputText", "", "name", "nome", 3, "ngModel", "ngModelChange"], ["nome", ""], ["pInputTextarea", "", "name", "enunciado", 3, "ngModel", "ngModelChange"], ["defaultLabel", "Selecione", "display", "chip", "name", "faixaEtaria", 3, "options", "ngModel", "resetFilterOnHide", "ngModelChange", "onChange"], ["faixaEtaria", ""], ["defaultLabel", "Selecione", "display", "chip", "name", "campoExperiencia", 3, "options", "ngModel", "resetFilterOnHide", "ngModelChange", "onChange"], ["campoExperiencia", ""], ["defaultLabel", "Selecione", "display", "chip", "name", "aprendizagemDesenvolvimento", 3, "options", "ngModel", "resetFilterOnHide", "ngModelChange"], ["aprendizagemDesenvolvimento", ""], ["mode", "advanced", "name", "arquivo", "chooseLabel", "Adicionar", "cancelLabel", "Cancelar", 3, "url", "showUploadButton"], ["arquivo", ""], ["pButton", "", "type", "button", "label", "Salvar", "icon", "pi pi-check", 3, "disabled", "click"], ["pButton", "", "type", "button", "label", "Voltar", "icon", "pi pi-check", "routerLink", "", 3, "disabled"]], template: function AtividadeCadastroComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "p-fieldset", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -2146,49 +2185,42 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "label");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "Campo Experiencia");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "p-multiSelect", 13, 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "p-multiSelect", 13, 14);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_multiSelect_ngModelChange_24_listener($event) { return ctx.atividade.campoExperiencia = $event; })("onChange", function AtividadeCadastroComponent_Template_p_multiSelect_onChange_24_listener() { return ctx.aprendizagemDesenvolvimentoAlterada(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "h5");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Chips");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "label");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Objetivos de aprendizagem e desenvolvimento");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "p-multiSelect", 14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_multiSelect_ngModelChange_29_listener($event) { return ctx.multselect.nome = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](32, "Objetivos de aprendizagem e desenvolvimento");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "p-dropdown", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_dropdown_ngModelChange_33_listener($event) { return ctx.atividade.aprendizagemDesenvolvimento = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "p-multiSelect", 15, 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AtividadeCadastroComponent_Template_p_multiSelect_ngModelChange_29_listener($event) { return ctx.atividade.aprendizagemDesenvolvimento = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, "Anexar Imagem");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "label");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](33, "Anexar Imagem");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](37, "p-fileUpload", 16, 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](34, "p-fileUpload", 17, 18);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "button", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AtividadeCadastroComponent_Template_button_click_40_listener() { return ctx.uploadComDados(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "button", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AtividadeCadastroComponent_Template_button_click_37_listener() { return ctx.uploadComDados(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](42, "button", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](38, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](39, "button", 20);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
+        const _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](30);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("hidden", !ctx.requestProgress);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleMap"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](20, _c1));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleMap"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](18, _c1));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.atividade.nome);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
@@ -2198,17 +2230,15 @@ AtividadeCadastroComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.campoExperienciaList)("ngModel", ctx.atividade.campoExperiencia)("resetFilterOnHide", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.cities)("ngModel", ctx.multselect.nome);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("showClear", true)("options", ctx.aprendizagemDesenvolvimento)("ngModel", ctx.atividade.aprendizagemDesenvolvimento);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", _r4)("ngModel", ctx.atividade.aprendizagemDesenvolvimento)("resetFilterOnHide", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("url", ctx.apiUploadUrl);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("showUploadButton", false);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.requestProgress);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.requestProgress);
-    } }, directives: [primeng_fieldset__WEBPACK_IMPORTED_MODULE_5__["Fieldset"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_6__["ProgressBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["DefaultValueAccessor"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__["InputText"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__["InputTextarea"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_10__["MultiSelect"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_11__["Dropdown"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_12__["FileUpload"], primeng_button__WEBPACK_IMPORTED_MODULE_13__["ButtonDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLink"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhdGl2aWRhZGUtY2FkYXN0cm8uY29tcG9uZW50LmNzcyJ9 */"] });
+    } }, directives: [primeng_fieldset__WEBPACK_IMPORTED_MODULE_5__["Fieldset"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_6__["ProgressBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["DefaultValueAccessor"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_8__["InputText"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], primeng_inputtextarea__WEBPACK_IMPORTED_MODULE_9__["InputTextarea"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_10__["MultiSelect"], primeng_fileupload__WEBPACK_IMPORTED_MODULE_11__["FileUpload"], primeng_button__WEBPACK_IMPORTED_MODULE_12__["ButtonDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLink"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhdGl2aWRhZGUtY2FkYXN0cm8uY29tcG9uZW50LmNzcyJ9 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AtividadeCadastroComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -2321,22 +2351,27 @@ __webpack_require__.r(__webpack_exports__);
 class CabecalhoService {
     constructor(http) {
         this.http = http;
+        // urlBase = "https://educa-mais-api.herokuapp.com/";
+        this.urlBase = "http://localhost:8080/";
     }
     listaCabecalhos() {
         // return this.http.get('https://educa-mais-api.herokuapp.com/atividade/cabecalho')
-        return this.http.get('http://localhost:8080/atividade/cabecalho')
+        // return this.http.get('http://localhost:8080/atividade/cabecalho')
+        return this.http.get(this.urlBase + 'atividade/cabecalho')
             .toPromise()
             .then(data => { return data; });
     }
     deletarCabecalho(id) {
         // return this.http.delete(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${id}`)
-        return this.http.delete(`http://localhost:8080/atividade/cabecalho/${id}`)
+        // return this.http.delete(`http://localhost:8080/atividade/cabecalho/${id}`)
+        return this.http.delete(this.urlBase + `atividade/cabecalho/${id}`)
             .toPromise()
             .then(response => { return response; });
     }
     consultarIdCabecalho(id) {
         // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${id}`)
-        return this.http.get(`http://localhost:8080/atividade/cabecalho/${id}`)
+        // return this.http.get(`http://localhost:8080/atividade/cabecalho/${id}`)
+        return this.http.get(this.urlBase + `atividade/cabecalho/${id}`)
             .toPromise()
             .then(response => {
             const cadastro = response;
@@ -2345,8 +2380,9 @@ class CabecalhoService {
     }
     atualizarCabecalho(cabecalho) {
         console.log("id service", cabecalho);
-        //    return this.http.put(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${cabecalho.id}`, cabecalho)
-        return this.http.put(`http://localhost:8080/atividade/cabecalho/${cabecalho.id}`, cabecalho)
+        // return this.http.put(`https://educa-mais-api.herokuapp.com/atividade/cabecalho/${cabecalho.id}`, cabecalho)
+        //    return this.http.put(`http://localhost:8080/atividade/cabecalho/${cabecalho.id}`, cabecalho)
+        return this.http.put(this.urlBase + `atividade/cabecalho/${cabecalho.id}`, cabecalho)
             .toPromise()
             .then(response => {
             const cabecalhoAtualizado = response;
