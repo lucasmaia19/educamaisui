@@ -57,7 +57,7 @@ export class CadastroService {
             .then(response => {return response});
     }
 
-    consultarListaFaixaEtariaFiltroId(idList: any): Promise<any> {
+    consultarListaFaixaEtariaFiltroId(idList: string): Promise<any> {
 
         let faixaEtariaIdList = `faixaEtariaIdList=${idList}`;
 
@@ -66,7 +66,7 @@ export class CadastroService {
             .then(response => {return response});
     }
 
-    consultarCampoExperienciaFiltroId(idList: any): Promise<any> {
+    consultarCampoExperienciaFiltroId(idList: string): Promise<any> {
 
         let campoExperienciaIdList = `campoExperienciaIdList=${idList}`;
 
@@ -76,10 +76,11 @@ export class CadastroService {
             .then(response => {return response});
     }
 
-    consultarCeFeFiltroId(id: any, idd: any): Promise<any> {
-        // return this.http.get(`https://educa-mais-api.herokuapp.com/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
-        // return this.http.get(`http://localhost:8080/atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
-        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/ce-fe-id/${id}/${idd}`)
+    consultarCeFeFiltroId(idListCe: string, idListFe: string): Promise<any> {
+
+        let campoExfaixaEt = `campoExperienciaIdList=${idListCe}&faixaEtariaIdList=${idListFe}`
+
+        return this.http.get(this.urlBase + `atividade/aprendizagem-desenvolvimento/filter/ce-fe-id-list?${campoExfaixaEt}`)
             .toPromise()
             .then(response => {return response});
     }

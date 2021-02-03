@@ -5,11 +5,26 @@ import { FileUpload } from 'primeng/fileupload';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
+export class MultSelecFe {
+    nome?: string;
+    code?: number;
+}
+
+export class MultSelecCe {
+    nome?: string;
+    code?: number;
+}
+
+export class MultSelecAd {
+    nome?: string;
+    code?: number;
+}
+
 export class Atividade {
     nome?: string;
     enunciado?: string;
-    faixaEtaria?: string;
-    campoExperiencia?: string;
+    faixaEtaria?:  MultSelecFe[];
+    campoExperiencia?: MultSelecFe[];
     aprendizagemDesenvolvimento?: string;
     arquivo?: File;
 }
@@ -37,31 +52,18 @@ export class AtividadeCadastroComponent implements OnInit {
 
     atividades: any;
 
-    multselect = new Multselect();
-
-    cities: any[];
-
     requestProgress = false;
 
-    faixaEtariaList = new Array<any>();
-    campoExperienciaList = new Array<any>();
-    aprendizagemDesenvolvimento = new Array<any>();
-
+    faixaEtariaList = new Array<MultSelecFe>();
+    campoExperienciaList = new Array<MultSelecCe>();
+    aprendizagemDesenvolvimento = new Array<MultSelecAd>();
 
     constructor(
         private http: HttpClient,
         private messageService: MessageService,
         private router: Router,
         private cadastroService: CadastroService,
-        ) {
-            this.cities = [
-                { nome: "New York", id: "NY" },
-                { nome: "Rome", id: "RM" },
-                { nome: "London", id: "LDN" },
-                { nome: "Istanbul", id: "IST" },
-                { nome: "Paris", id: "PRS" }
-              ];
-        }
+        ) {}
 
     ngOnInit(): void {
 
@@ -76,7 +78,7 @@ export class AtividadeCadastroComponent implements OnInit {
         this.cadastroService.consultarListaCampoExperiencia()
         .then(response => {
             for (var item of response) {
-                const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                const dropDownItem = { name: '[' + item.codigo + '] ' + item.descricao, code: item.id }
                 this.campoExperienciaList.push(dropDownItem);
            }
         })
@@ -86,7 +88,9 @@ export class AtividadeCadastroComponent implements OnInit {
         this.cadastroService.consultarListaFaixaEtaria()
         .then(response => {
             for (var item of response) {
-                const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+
+                const dropDownItem = { name: '[' + item.codigo + '] ' + item.descricao, code: item.id }
+
                 this.faixaEtariaList.push(dropDownItem);
                }
          })
@@ -94,50 +98,72 @@ export class AtividadeCadastroComponent implements OnInit {
 
     aprendizagemDesenvolvimentoAlterada() {
 
-        console.log('faixaEtariaAlterada()');
         this.aprendizagemDesenvolvimento = new Array<any>();
-
-        // Recupera a opção de faixa etaria.
-        // console.log("atividade.faixaEtaria", this.atividade.faixaEtaria);
-        // console.log("atividade.campoExperiencia", this.atividade.campoExperiencia);
-        console.log("antes da alteracao: this.aprendizagemDesenvolvimento", this.aprendizagemDesenvolvimento);
-
-        // Realizar uma requisição para a api usando a faixaEtaria como filtro
 
         if (this.atividade.campoExperiencia != undefined && this.atividade.faixaEtaria != undefined) {
 
-            // console.log('this.atividade.campoExperiencia != undefined && this.atividade.faixaEtaria != undefined');
+            let idListFe = '';
+            for (let item of this.atividade.faixaEtaria) {
+                console.log(item.code);
+                idListFe += item.code + ',';
+            }
+            idListFe = idListFe.replace(/,$/, '');
+            console.warn('idListFe', idListFe);
 
-            this.cadastroService.consultarCeFeFiltroId(this.atividade.campoExperiencia, this.atividade.faixaEtaria)
+            let idListCe = '';
+            for(let item of this.atividade.campoExperiencia) {
+                console.log("code ce", item.code);
+                idListCe += item.code + ',';
+            }
+            idListCe = idListCe.replace(/,$/, '');
+            console.warn('idListCe', idListCe);
+
+            this.cadastroService.consultarCeFeFiltroId(idListCe, idListFe)
                 .then(response =>
                     {
                         console.log(response)
                         for (var item of response) {
-                            const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                            const dropDownItem = { name: '[' + item.codigo + '] ' + item.descricao, code: item.id }
                             this.aprendizagemDesenvolvimento.push(dropDownItem)
                         }
                     })
 
          } else if (this.atividade.campoExperiencia != undefined) {
 
-            this.cadastroService.consultarCampoExperienciaFiltroId(this.atividade.campoExperiencia)
+            let idListCe = '';
+            for(let item of this.atividade.campoExperiencia) {
+                console.log("code ce", item.code);
+                idListCe += item.code + ',';
+            }
+            idListCe = idListCe.replace(/,$/, '');
+            console.warn('idListCe', idListCe);
+
+            this.cadastroService.consultarCampoExperienciaFiltroId(idListCe)
             .then(response =>
                 {
                         console.log(response)
                         for (var item of response) {
-                            const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                            const dropDownItem = { name: '[' + item.codigo + '] ' + item.descricao, code: item.id }
                             this.aprendizagemDesenvolvimento.push(dropDownItem)
                         }
             })
 
         } else if (this.atividade.faixaEtaria != undefined) {
 
-            this.cadastroService.consultarListaFaixaEtariaFiltroId(this.atividade.faixaEtaria)
+            let idListFe = '';
+            for (let item of this.atividade.faixaEtaria) {
+                console.log(item.code);
+                idListFe += item.code + ',';
+            }
+            idListFe = idListFe.replace(/,$/, '');
+            console.warn('idListFe', idListFe);
+
+            this.cadastroService.consultarListaFaixaEtariaFiltroId(idListFe)
                 .then(response =>
                     {
                         console.log(response)
                         for (var item of response) {
-                            const dropDownItem = { label: '[' + item.codigo + '] ' + item.descricao, value: item.id }
+                            const dropDownItem = { name: '[' + item.codigo + '] ' + item.descricao, code: item.id }
                             this.aprendizagemDesenvolvimento.push(dropDownItem)
                         }
                     }
@@ -159,7 +185,6 @@ export class AtividadeCadastroComponent implements OnInit {
 
     uploadComDados() {
 
-
         if (this.requestProgress) {
             return;
           }
@@ -168,7 +193,6 @@ export class AtividadeCadastroComponent implements OnInit {
 
         const formData = new FormData();
 
-        // const dadosCities = JSON.stringify(this.multselect);
         const faixaEtariaOp = JSON.stringify(this.atividade.faixaEtaria);
         formData.append('faixaEtariaOp', faixaEtariaOp);
         console.log("antes da req faixaEtariaOp", faixaEtariaOp)
@@ -195,23 +219,12 @@ export class AtividadeCadastroComponent implements OnInit {
             .toPromise()
             .then(response => {
 
-             // this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
                 this.messageService.add({severity:'success', summary:'Cadastro adicionado com sucesso!'});
-
-                // console.log("enunciado:", this.atividade.enunciado)
-                // console.log("nome", this.atividade.nome)
-                // console.log("atividade.campoExperiencia: ", this.atividade.campoExperiencia)
-                // console.log("atividade.campoExperiencia: ", this.atividade.aprendizagemDesenvolvimento)
-                console.log("faixaEtariaOp", faixaEtariaOp)
-
-                console.log("campoExperienciaOp", campoExperienciaOp)
-
-                console.log("aprendizagemDesenvolvimentoOp", aprendizagemDesenvolvimentoOp)
 
                 this.listaCadastros();
                 this.requestProgress = false;
 
-                // location.reload()
+                location.reload()
 
                 // this.clearForm();
             })
@@ -223,8 +236,8 @@ export class AtividadeCadastroComponent implements OnInit {
         this.atividade = {
               nome: '',
               enunciado: '',
-              faixaEtaria: '',
-              campoExperiencia: '',
+              faixaEtaria: new Array<MultSelecFe>(),
+              campoExperiencia: new Array<MultSelecCe>(),
               aprendizagemDesenvolvimento: '',
              };
         }

@@ -18,53 +18,32 @@
                     <textarea pInputTextarea name="enunciado" [(ngModel)]="atividade.enunciado"></textarea>
                 </div>
 
-                <!-- <div class="p-col-12 p-md-6">
-                    <label>Faixa Etárias</label>
-                    <p-dropdown [options]="faixaEtariaList" placeholder="Selecione"
-                    [showClear]="true" #faixaEtaria name="faixaEtaria" [(ngModel)]="atividade.faixaEtaria"
-                        (onChange)="aprendizagemDesenvolvimentoAlterada()"
-                    ></p-dropdown>
-                </div> -->
-
                 <div class="p-col-12 p-md-6">
-                    <label>Faixa Etárias</label>
-                    <p-multiSelect [options]="faixaEtariaList" [(ngModel)]="atividade.faixaEtaria"
-                         defaultLabel="Selecione" display="chip" name="faixaEtaria"
-                         #faixaEtaria [resetFilterOnHide]="true"
+                    <label>Faixa Etárias*</label>
+                    <p-multiSelect [options]="faixaEtariaList" optionLabel="name" [resetFilterOnHide]="true"
+                         defaultLabel="Selecione" display="chip"
+                         name="faixaEtaria" #faixaEtaria [(ngModel)]="atividade.faixaEtaria"
                         (onChange)="aprendizagemDesenvolvimentoAlterada()">
                     </p-multiSelect>
                 </div>
 
                 <div class="p-col-12 p-md-6">
-                    <label>Campo Experiencia</label>
-                        <p-multiSelect [options]="campoExperienciaList" [(ngModel)]="atividade.campoExperiencia"
-                        defaultLabel="Selecione" display="chip" name="campoExperiencia"
-                         #campoExperiencia [resetFilterOnHide]="true"
-                        (onChange)="aprendizagemDesenvolvimentoAlterada()">
+                    <label>Campo Experiencia*</label>
+                        <p-multiSelect [options]="campoExperienciaList" optionLabel="name" [resetFilterOnHide]="true"
+                            defaultLabel="Selecione" display="chip"
+                            name="campoExperiencia" #campoExperiencia [(ngModel)]="atividade.campoExperiencia"
+                            (onChange)="aprendizagemDesenvolvimentoAlterada()">
                         </p-multiSelect>
                 </div>
 
                 <div class="p-col-12 p-md-6">
-                        <label>Objetivos de aprendizagem e desenvolvimento</label>
-                        <p-multiSelect [options]="aprendizagemDesenvolvimento" [(ngModel)]="atividade.aprendizagemDesenvolvimento"
-                        defaultLabel="Selecione" display="chip" name="objetivosAprendizagem"
-                          [resetFilterOnHide]="true"
-                         (onChange)="aprendizagemDesenvolvimentoAlterada()">
+                        <label>Objetivos de aprendizagem e desenvolvimento*</label>
+                        <p-multiSelect [options]="aprendizagemDesenvolvimento" optionLabel="name" [resetFilterOnHide]="true"
+                            defaultLabel="Selecione" display="chip"
+                            name="objetivosAprendizagem" #objetivosAprendizagem [(ngModel)]="atividade.aprendizagemDesenvolvimento"
+                            (onChange)="aprendizagemDesenvolvimentoAlterada()">
                         </p-multiSelect>
                 </div>
-
-                <!-- <div class="p-col-12 p-md-6">
-                    <label>Objetivos de aprendizagem e desenvolvimento</label>
-                    <p-dropdown [showClear]="true" [options]="aprendizagemDesenvolvimento" [(ngModel)]="atividade.aprendizagemDesenvolvimento" name="objetivosAprendizagem" placeholder="Selecione" ></p-dropdown>
-                </div> -->
-
-                <!-- <div class="p-col-12 p-md-6">
-                        <h5>Chips</h5>
-                        <p-multiSelect [options]="cities" optionLabel="nome"
-                            [(ngModel)]="multselect.nome"  name="multselect"
-                            display="chip"></p-multiSelect>
-                </div> -->
-
 
                 <div class="p-col-12 p-md-6">
                     <label>Anexar Imagem</label>
