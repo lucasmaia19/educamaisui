@@ -28,11 +28,11 @@ export class Cabecalho {
 })
 export class CabecalhoComponent implements OnInit {
 
-//   apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
-//   apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados-cabecalho';
+  apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
+  apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
 
-  apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
-  apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
+//   apiUploadUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
+//   apiuploadComDadosUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
 
   cabecalho = new Cabecalho();
   @ViewChild('logoPrefeitura') logoPrefeitura: FileUpload;
@@ -49,9 +49,7 @@ export class CabecalhoComponent implements OnInit {
 
   pt: any;
 
-  ngOnInit(): void {
-
-    // this.listaCabecalhos()
+  ngOnInit() {
 
       this.pt = {
         firstDayOfWeek: 0,
@@ -113,14 +111,6 @@ export class CabecalhoComponent implements OnInit {
             }
 
         });
-
-        // formData.append('professora', this.cabecalho.professora);
-
-        // let dataDummy1 = moment(this.cabecalho.data);
-        // console.log('dataDummy1', dataDummy1)
-        // let dataDummy2 = dataDummy1.format("YYYY-MM-DD");
-        // console.log('dataDummy2', dataDummy2);
-        // formData.append('data', dataDummy2);
 
         const logoPrefeitura = this.logoPrefeitura._files[0];
         if (logoPrefeitura !== undefined) {

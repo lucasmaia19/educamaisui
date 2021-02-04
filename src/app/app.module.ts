@@ -6,7 +6,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AtividadeCadastroComponent } from './atividade/atividade-cadastro/atividade-cadastro.component';
 import { GerenciarCabecalhoComponent } from './cabecalho/cabecalho-gerenciar/gerenciar-cabecalho.component';
 
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -100,7 +100,8 @@ const routes: Routes = [
     SidebarModule,
     MultiSelectModule,
 
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

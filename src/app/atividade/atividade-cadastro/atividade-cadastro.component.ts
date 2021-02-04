@@ -25,7 +25,7 @@ export class Atividade {
     enunciado?: string;
     faixaEtaria?:  MultSelecFe[];
     campoExperiencia?: MultSelecFe[];
-    aprendizagemDesenvolvimento?: string;
+    aprendizagemDesenvolvimento?: MultSelecAd[];
     arquivo?: File;
 }
 
@@ -41,11 +41,11 @@ export class Multselect {
 })
 export class AtividadeCadastroComponent implements OnInit {
 
-    // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
-    // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+    apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+    apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
 
-    apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
-    apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
+    // apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
+    // apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
 
     atividade = new Atividade();
     @ViewChild('arquivo') arquivo: FileUpload;
@@ -88,9 +88,7 @@ export class AtividadeCadastroComponent implements OnInit {
         this.cadastroService.consultarListaFaixaEtaria()
         .then(response => {
             for (var item of response) {
-
                 const dropDownItem = { name: '[' + item.codigo + '] ' + item.descricao, code: item.id }
-
                 this.faixaEtariaList.push(dropDownItem);
                }
          })
@@ -150,6 +148,8 @@ export class AtividadeCadastroComponent implements OnInit {
 
         } else if (this.atividade.faixaEtaria != undefined) {
 
+            console.log("this.atividade.faixaEtaria", this.atividade.faixaEtaria)
+
             let idListFe = '';
             for (let item of this.atividade.faixaEtaria) {
                 console.log(item.code);
@@ -185,6 +185,32 @@ export class AtividadeCadastroComponent implements OnInit {
 
     uploadComDados() {
 
+        let idListFe = '';
+        for (let item of this.atividade.faixaEtaria) {
+            console.log(item.code);
+            idListFe += item.code + ',';
+        }
+        idListFe = idListFe.replace(/,$/, '');
+       console.warn('idListFe', idListFe);
+
+        let idListCe = '';
+        for (let item of this.atividade.faixaEtaria) {
+            console.log(item.code);
+            idListCe += item.code + ',';
+        }
+        idListCe = idListCe.replace(/,$/, '');
+        console.warn('idListCe', idListCe);
+
+
+        let idListAd = '';
+        for (let item of this.atividade.aprendizagemDesenvolvimento) {
+            console.log(item.code);
+            idListAd += item.code + ',';
+        }
+        idListAd = idListAd.replace(/,$/, '');
+        console.warn('idListAd', idListAd);
+
+
         if (this.requestProgress) {
             return;
           }
@@ -193,15 +219,15 @@ export class AtividadeCadastroComponent implements OnInit {
 
         const formData = new FormData();
 
-        const faixaEtariaOp = JSON.stringify(this.atividade.faixaEtaria);
+        const faixaEtariaOp = JSON.stringify(idListFe);
         formData.append('faixaEtariaOp', faixaEtariaOp);
         console.log("antes da req faixaEtariaOp", faixaEtariaOp)
 
-        const campoExperienciaOp = JSON.stringify(this.atividade.campoExperiencia);
+        const campoExperienciaOp = JSON.stringify(idListCe);
         formData.append('campoExperienciaOp', campoExperienciaOp);
         console.log("antes da req campoExperienciaOp", campoExperienciaOp)
 
-        const aprendizagemDesenvolvimentoOp = JSON.stringify(this.atividade.aprendizagemDesenvolvimento);
+        const aprendizagemDesenvolvimentoOp = JSON.stringify(idListAd);
         formData.append('aprendizagemDesenvolvimentoOp', aprendizagemDesenvolvimentoOp);
         console.log("antes da req aprendizagemDesenvolvimentoOp", aprendizagemDesenvolvimentoOp)
 
@@ -226,19 +252,9 @@ export class AtividadeCadastroComponent implements OnInit {
 
                 location.reload()
 
-                // this.clearForm();
             })
             .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CADASTRAR'}))
             .finally(() => this.requestProgress = false);
     }
 
-    clearForm() {
-        this.atividade = {
-              nome: '',
-              enunciado: '',
-              faixaEtaria: new Array<MultSelecFe>(),
-              campoExperiencia: new Array<MultSelecCe>(),
-              aprendizagemDesenvolvimento: '',
-             };
-        }
 }
