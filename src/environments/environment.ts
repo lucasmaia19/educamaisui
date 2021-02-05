@@ -5,8 +5,8 @@
 export const environment = {
     production: false,
 
-    // urlBase: "https://educa-mais-api.herokuapp.com/"
-    urlBase: "http://localhost:8080/"
+    urlBase: "https://educa-mais-api.herokuapp.com/"
+    // urlBase: "http://localhost:8080/"
 };
 
 /*
