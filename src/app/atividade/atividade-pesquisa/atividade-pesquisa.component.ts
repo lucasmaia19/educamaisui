@@ -76,26 +76,28 @@ export class AtividadePesquisaComponent implements OnInit {
             this.atividades = response;
             console.log(this.atividades);
             // this.router.navigate([''])
-            this.requestProgress = false;
         })
         .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CARREGAR ATIVIDADES'}))
         .finally(() => this.requestProgress = false);
+        // this.requestProgress = false;
     }
 
     deletarCadastro(id: number) {
         this.confirmationService.confirm({
         message: 'Tem certeza que deseja excluir?',
-        accept: () => {
-        this.cadastroService.deletarCadastro(id)
-        .then(response => {
-            this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
-            console.log("Id " + id + " excluido" )
-            location.reload()
-            this.listaCadastros
+            accept: () => {
+            this.requestProgress = true
+            this.cadastroService.deletarCadastro(id)
+            .then(response => {
+                this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
+                console.log("Id " + id + " excluido" )
+                location.reload()
+                this.listaCadastros
 
-            });
-        }
-    })
+                });
+            }
+        })
+        this.requestProgress = false
     }
 
     converteImagemBase64ParaHtml(imagem: any) {
@@ -134,10 +136,10 @@ export class AtividadePesquisaComponent implements OnInit {
         .then(response => {
             this.cabecalho = response;
             console.log("resposta", response);
-            // this.requestProgress = false;
         })
         .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CARREGAR CABEÇALHOS'}))
-        .finally(() => this.requestProgress = false);
+        // .finally(() => this.requestProgress = false);
+        // this.requestProgress = false;
     }
 
     teste() {

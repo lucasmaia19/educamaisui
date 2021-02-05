@@ -15,11 +15,11 @@ import { FormControl } from '@angular/forms';
 })
 export class GerenciarCabecalhoComponent implements OnInit {
 
-    apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
-    apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
+    // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
+    // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
 
-    // apiUploadUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
-    // apiuploadComDadosUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
+    apiUploadUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
+    apiuploadComDadosUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
 
     @ViewChild('logoPrefeitura') logoPrefeitura: FileUpload;
     @ViewChild('logoEscola') logoEscola: FileUpload;
@@ -173,6 +173,8 @@ export class GerenciarCabecalhoComponent implements OnInit {
             this.cabecalho = response;
             console.log("resposta", response);
         })
+        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR'}))
+        .finally(() => this.requestProgress = false);
     }
 
     converteImagemBase64ParaHtml(imagem: any) {

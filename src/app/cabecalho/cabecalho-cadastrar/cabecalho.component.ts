@@ -28,11 +28,11 @@ export class Cabecalho {
 })
 export class CabecalhoComponent implements OnInit {
 
-  apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
-  apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
+//   apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
+//   apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
 
-//   apiUploadUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
-//   apiuploadComDadosUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
+  apiUploadUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
+  apiuploadComDadosUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
 
   cabecalho = new Cabecalho();
   @ViewChild('logoPrefeitura') logoPrefeitura: FileUpload;
@@ -130,7 +130,8 @@ export class CabecalhoComponent implements OnInit {
         })
 
         this.requestProgress = false;
-        this.router.navigate([''])
+        this.listaCabecalhos()
+        // this.router.navigate([''])
     }
 
     listaCabecalhos() {

@@ -41,11 +41,11 @@ export class Multselect {
 })
 export class AtividadeCadastroComponent implements OnInit {
 
-    apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
-    apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+    // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
+    // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/atividade/upload-com-dados';
 
-    // apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
-    // apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
+    apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados';
+    apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados';
 
     atividade = new Atividade();
     @ViewChild('arquivo') arquivo: FileUpload;
@@ -144,6 +144,7 @@ export class AtividadeCadastroComponent implements OnInit {
                             const dropDownItem = { name: '[' + item.codigo + '] ' + item.descricao, code: item.id }
                             this.aprendizagemDesenvolvimento.push(dropDownItem)
                         }
+
             })
 
         } else if (this.atividade.faixaEtaria != undefined) {
@@ -254,7 +255,7 @@ export class AtividadeCadastroComponent implements OnInit {
 
             })
             .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CADASTRAR'}))
-            .finally(() => this.requestProgress = false);
-    }
+                .finally(() => this.requestProgress = false);
+        }
 
 }
