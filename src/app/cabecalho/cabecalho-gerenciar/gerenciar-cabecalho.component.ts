@@ -15,11 +15,11 @@ import { FormControl } from '@angular/forms';
 })
 export class GerenciarCabecalhoComponent implements OnInit {
 
-    apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
-    apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
+    // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
+    // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
 
-    // apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
-    // apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
+    apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
+    apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
 
     @ViewChild('logoPrefeitura') logoPrefeitura: FileUpload;
     @ViewChild('logoEscola') logoEscola: FileUpload;
