@@ -1,79 +1,106 @@
-<p-fieldset legend="Cadastro do Cabeçalho">
+<div class="p-col-12 p-md-12">
+    <p-fieldset legend="Cadastro do Cabeçalho">
 
-    <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
-        <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+        <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
+            <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+        </div>
+
+        <div class="p-fluid">
+            <form #form (ngSubmit)="uploadComDadosCabecalho()">
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Professora</label>
+                    </div>
+                    <input type="text" pInputText #professora name="professora" [(ngModel)]="cabecalho.professora">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Aluno</label>
+                    </div>
+                    <input type="text" pInputText #aluno name="aluno" [(ngModel)]="cabecalho.aluno">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Data</label>
+                    </div>
+                    <p-calendar type="text" [showIcon]="true" [locale]="pt" dateFormat="dd/mm/yy"
+                        name="data" #data [(ngModel)]="cabecalho.data" required></p-calendar>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Turma</label>
+                    </div>
+                    <input type="text" pInputText #turma name="turma" [(ngModel)]="cabecalho.turma">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Logo da Prefeitura</label>
+                    </div>
+                    <p-fileUpload mode="advanced" #logoPrefeitura name="logoPrefeitura" url="{{apiUploadUrl}}"
+                        [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Logo da Escola</label>
+                    </div>
+                    <p-fileUpload mode="advanced" #logoEscola name="logoEscola" url="{{apiUploadUrl}}"
+                        [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <h3>Dados da Escola</h3>
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Nome da Escola</label>
+                    </div>
+                    <input type="text" pInputText #nomeEscola name="nomeEscola" [(ngModel)]="cabecalho.nomeEscola">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Logradouro</label>
+                    </div>
+                    <input type="text" pInputText #logradouro name="logradouro" [(ngModel)]="cabecalho.logradouro">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Tel</label>
+                    </div>
+                    <input type="text" pInputText #tel name="tel" [(ngModel)]="cabecalho.tel">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Cep</label>
+                    </div>
+                    <input type="text" pInputText #cep name="cep" [(ngModel)]="cabecalho.cep">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <div class="p-col-12 p-md-6">
+                        <label>Email</label>
+                    </div>
+                    <input type="text" pInputText #email name="email" [(ngModel)]="cabecalho.email">
+                </div>
+
+                <div class="p-col-12 p-md-6">
+                    <button pButton type="button" label="Salvar" icon="pi pi-check" (click)="uploadComDadosCabecalho()" ></button>
+                </div>
+
+            </form>
+        </div>
+    </p-fieldset>
+
+    <div class="p-col-12 p-md-6">
+        <button pButton type="button" label="Voltar" icon="pi pi-check" routerLink="" [disabled]="requestProgress"></button>
     </div>
-
-    <div class="p-fluid">
-        <form #form (ngSubmit)="uploadComDadosCabecalho()">
-
-            <div class="p-col-12 p-md-6">
-                <label>Professora</label>
-                <input type="text" pInputText #professora name="professora" [(ngModel)]="cabecalho.professora">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Aluno</label>
-                <input type="text" pInputText #aluno name="aluno" [(ngModel)]="cabecalho.aluno">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Data</label>
-                <p-calendar type="text" [showIcon]="true" [locale]="pt" dateFormat="dd/mm/yy"
-                    name="data" #data [(ngModel)]="cabecalho.data" required></p-calendar>
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Turma</label>
-                <input type="text" pInputText #turma name="turma" [(ngModel)]="cabecalho.turma">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Logo da Prefeitura</label>
-                <p-fileUpload mode="advanced" #logoPrefeitura name="logoPrefeitura" url="{{apiUploadUrl}}"
-                    [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Logo da Escola</label>
-                <p-fileUpload mode="advanced" #logoEscola name="logoEscola" url="{{apiUploadUrl}}"
-                    [showUploadButton]="false" chooseLabel="Adicionar" cancelLabel="Cancelar"></p-fileUpload>
-            </div>
-
-            <h3>Dados da Escola</h3>
-            <div class="p-col-12 p-md-6">
-                <label>Nome da Escola</label>
-                <input type="text" pInputText #nomeEscola name="nomeEscola" [(ngModel)]="cabecalho.nomeEscola">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Logradouro</label>
-                <input type="text" pInputText #logradouro name="logradouro" [(ngModel)]="cabecalho.logradouro">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Tel</label>
-                <input type="text" pInputText #tel name="tel" [(ngModel)]="cabecalho.tel">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Cep</label>
-                <input type="text" pInputText #cep name="cep" [(ngModel)]="cabecalho.cep">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <label>Email</label>
-                <input type="text" pInputText #email name="email" [(ngModel)]="cabecalho.email">
-            </div>
-
-            <div class="p-col-12 p-md-6">
-                <button pButton type="button" label="Salvar" icon="pi pi-check" (click)="uploadComDadosCabecalho()" ></button>
-            </div>
-        </form>
-    </div>
-</p-fieldset>
-
-<div class="p-col-12 p-md-6">
-    <button pButton type="button" label="Voltar" icon="pi pi-check" routerLink="" [disabled]="requestProgress"></button>
 </div>
-

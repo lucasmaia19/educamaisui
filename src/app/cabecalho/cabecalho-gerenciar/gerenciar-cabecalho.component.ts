@@ -18,8 +18,8 @@ export class GerenciarCabecalhoComponent implements OnInit {
     // apiUploadUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
     // apiuploadComDadosUrl = 'https://educa-mais-api.herokuapp.com/cabecalho/upload-com-dados-cabecalho';
 
-    apiUploadUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
-    apiuploadComDadosUrl = 'http://localhost:8080/atividade/upload-com-dados-cabecalho';
+    apiUploadUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
+    apiuploadComDadosUrl = 'http://localhost:8080/cabecalho/upload-com-dados-cabecalho';
 
     @ViewChild('logoPrefeitura') logoPrefeitura: FileUpload;
     @ViewChild('logoEscola') logoEscola: FileUpload;
@@ -37,6 +37,8 @@ export class GerenciarCabecalhoComponent implements OnInit {
     submitted: boolean;
 
     pt:any;
+
+    requestProgress = false;
 
   constructor(
         private cabecalhoService: CabecalhoService,
@@ -61,6 +63,7 @@ export class GerenciarCabecalhoComponent implements OnInit {
         };
 
     this.listaCabecalhos();
+    this.requestProgress = true
 
   }
 
@@ -156,13 +159,17 @@ export class GerenciarCabecalhoComponent implements OnInit {
         .toPromise()
         .then(cabecalho => {
             console.log(cabecalho)
+            this.listaCabecalhos
+            location.reload()
             this.messageService.add({severity:'success', summary:'Cabeçalho adicionado com sucesso!'});
         })
     }
 
     listaCabecalhos() {
-        this.cabecalhoService.listaCabecalhos()
-        .then(response => {
+
+          this.cabecalhoService.listaCabecalhos()
+          .then(response => {
+            this.requestProgress = false
             this.cabecalho = response;
             console.log("resposta", response);
         })
@@ -176,29 +183,33 @@ export class GerenciarCabecalhoComponent implements OnInit {
         return novaImagem;
     }
 
-    // deletarCabecalho(id: number) {
-    //     this.confirmationService.confirm({
-    //     message: 'Tem certeza que deseja excluir',
-    //     accept: () => {
-    //     this.cabecalhoService.deletarCabecalho(id)
-    //         .then(response => {
-    //             this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
-    //             console.log("Id " + id + " excluido" )
-    //             this.listaCabecalhos
-    //             });
-    //         }
-    //     })
-    // }
-
     deletarCabecalho(id: number) {
 
-        this.cabecalhoService.deletarCabecalho(id)
-        .then(response => {
-            this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
-            console.log("Id " + id + " excluido" )
-            this.listaCabecalhos
+        this.confirmationService.confirm({
+        message: 'Tem certeza que deseja excluir',
+          accept: () => {
+            this.requestProgress = true
+            this.cabecalhoService.deletarCabecalho(id)
+            .then(response => {
+                console.log("Id " + id + " excluido" )
+                this.listaCabecalhos
+                location.reload()
+                this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
             });
         }
+    })
+    this.requestProgress = false;
+    }
+
+    // deletarCabecalho(id: number) {
+
+    //     this.cabecalhoService.deletarCabecalho(id)
+    //     .then(response => {
+    //         this.messageService.add({severity:'success', summary: ('Cadastro excluido com sucesso')})
+    //         console.log("Id " + id + " excluido" )
+    //         this.listaCabecalhos
+    //         });
+    //     }
 
     editProduct(id: number) {
         this.productDialog = true;

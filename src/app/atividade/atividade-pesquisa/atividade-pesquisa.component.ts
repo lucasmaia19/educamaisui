@@ -35,8 +35,9 @@ export class AtividadePesquisaComponent implements OnInit {
 
   ngOnInit() {
 
-      this.listaCadastros();
-      this.listaCabecalhos()
+    this.requestProgress = true;
+    this.listaCadastros();
+    this.listaCabecalhos()
 
         this.items = [
             {
@@ -69,14 +70,16 @@ export class AtividadePesquisaComponent implements OnInit {
     }
 
     listaCadastros() {
+        this.messageService.add({severity: 'info', summary: 'Carregando atividades...'});
         this.cadastroService.listaCadastros()
         .then(response => {
             this.atividades = response;
             console.log(this.atividades);
             // this.router.navigate([''])
+            this.requestProgress = false;
         })
         .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR ATIVIDADES'}))
-            .finally(() => this.requestProgress = false);
+        // .finally(() => this.requestProgress = false);
     }
 
     deletarCadastro(id: number) {
@@ -131,9 +134,10 @@ export class AtividadePesquisaComponent implements OnInit {
         .then(response => {
             this.cabecalho = response;
             console.log("resposta", response);
+            // this.requestProgress = false;
         })
         .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR CABEÇALHOS'}))
-            .finally(() => this.requestProgress = false);
+        // .finally(() => this.requestProgress = false);
     }
 
     teste() {

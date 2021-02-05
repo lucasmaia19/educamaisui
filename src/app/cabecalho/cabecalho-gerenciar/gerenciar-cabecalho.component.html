@@ -1,11 +1,15 @@
-<p-toast></p-toast>
+<!-- <p-toast></p-toast> -->
 
 <div class="card">
+    <div class="p-field p-col-6 p-md-12" [hidden]="!requestProgress">
+        <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+    </div>
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+            <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
             <!-- <button pButton pRipple [label]="" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button> -->
         </ng-template>
+
 
         <!-- <ng-template pTemplate="right">
             <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
@@ -21,7 +25,7 @@
                 <h5 class="p-m-0">Gerenciamento de Cabeçalho</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar..." />
                 </span>
             </div>
         </ng-template>
@@ -54,7 +58,7 @@
                 <td>
                     <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(cabecalho)"></button> -->
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(cabecalho.id)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletarCabecalho(cabecalho.id)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletarCabecalho(cabecalho.id)" [disabled]="requestProgress"></button>
                 </td>
             </tr>
         </ng-template>
