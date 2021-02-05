@@ -78,8 +78,8 @@ export class AtividadePesquisaComponent implements OnInit {
             // this.router.navigate([''])
             this.requestProgress = false;
         })
-        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR ATIVIDADES'}))
-        // .finally(() => this.requestProgress = false);
+        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CARREGAR ATIVIDADES'}))
+        .finally(() => this.requestProgress = false);
     }
 
     deletarCadastro(id: number) {
@@ -136,8 +136,8 @@ export class AtividadePesquisaComponent implements OnInit {
             console.log("resposta", response);
             // this.requestProgress = false;
         })
-        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO LISTAR CABEÇALHOS'}))
-        // .finally(() => this.requestProgress = false);
+        .catch(erro => this.messageService.add({severity:'error', summary:'ERRO AO CARREGAR CABEÇALHOS'}))
+        .finally(() => this.requestProgress = false);
     }
 
     teste() {
